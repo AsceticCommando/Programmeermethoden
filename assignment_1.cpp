@@ -27,19 +27,23 @@
         }
         else {
             cin >> month;
-            if (( currentYear - year == 10 ) && ( month < currentMonth )) {
-
+            ageMonths = 12 * ( currentYear - year ) + ( currentMonth - month );
+            cout << "Uw leeftijd is " << ageMonths / 12 << " jaar en "
+             << ageMonths % 12 << " maanden oud." << endl;
+            if (( currentYear - year == 10 ) && ( month > currentMonth )) {
+                cout << "Als " << ageMonths / 12
+                 << " jarige voldoet U niet aan de leeftijdseisen om in "
+                 << "aanmerking te komen voor de universiteit." << endl;
+                return 1;
             }
-            if ((currentYear - year == 101) && (month > currentMonth)) {
-
+            if (( currentYear - year == 101 ) && ( month < currentMonth )) {
+                cout << "Als " << ageMonths / 12
+                 << " jarige voldoet U niet aan de leeftijdseisen om in "
+                 << "aanmerking te komen voor de universiteit." << endl;
+                return 1;
             }
         }
         cin >> day;  //Invoer van geboorte-data
-
-        ageMonths = 12 * ( currentYear - year ) + ( currentMonth - month );
-
-        cout << "Uw leeftijd " << ageMonths / 12 << " jaar en "
-             << ageMonths % 12 << " maanden oud." << endl;
 
         //cout << ctime(&currentDate);
 
