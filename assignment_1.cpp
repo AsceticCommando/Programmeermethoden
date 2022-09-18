@@ -28,22 +28,38 @@
         else {
             cin >> month;
             ageMonths = 12 * ( currentYear - year ) + ( currentMonth - month );
-            cout << "Uw leeftijd is " << ageMonths / 12 << " jaar en "
-             << ageMonths % 12 << " maanden oud." << endl;
             if (( currentYear - year == 10 ) && ( month > currentMonth )) {
                 cout << "Als " << ageMonths / 12
                  << " jarige voldoet U niet aan de leeftijdseisen om in "
                  << "aanmerking te komen voor de universiteit." << endl;
                 return 1;
             }
-            if (( currentYear - year == 101 ) && ( month < currentMonth )) {
+            else if (( currentYear - year == 101 ) && ( month < currentMonth )) {
                 cout << "Als " << ageMonths / 12
                  << " jarige voldoet U niet aan de leeftijdseisen om in "
                  << "aanmerking te komen voor de universiteit." << endl;
                 return 1;
             }
+            else {
+                cin >> day;
+                if (( currentYear - year == 10 ) && ( month == currentMonth ) && ( day > currentDay )) {
+                    ageMonths--;
+                    cout << "Als " << ageMonths / 12
+                         << " jarige voldoet U niet aan de leeftijdseisen om in "
+                         << "aanmerking te komen voor de universiteit." << endl;
+                    return 1;
+                }
+                if (( currentYear - year == 101 ) && ( month == currentMonth ) && ( day < currentDay )) {
+                    cout << "Als " << ageMonths / 12
+                         << " jarige voldoet U niet aan de leeftijdseisen om in "
+                         << "aanmerking te komen voor de universiteit." << endl;
+                    return 1;
+                }
+            }
         }
-        cin >> day;  //Invoer van geboorte-data
+        
+        cout << "Uw leeftijd is " << ageMonths / 12 << " jaar en "
+             << ageMonths % 12 << " maanden oud." << endl;
 
         //cout << ctime(&currentDate);
 
