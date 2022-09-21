@@ -206,7 +206,7 @@
                 cout << "Correct!" << endl;
             }
             else {
-                cout << "Dat is incorrect." << endl;
+                cout << "Dat is incorrect, u bent geboren op een: " << birthDay << birthDay2 << endl;
                 return 1;
             }
         }//Berekening en check van de geboortedag.
