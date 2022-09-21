@@ -66,13 +66,13 @@
 
         if ( month == currentMonth && day == currentDay ) {
             cout << "Gefeliciteerd, met uw verjaardag!" << endl;
-        }
+        }//Felicitaties voor de jarige
 
         if ( !allowedEntry ) {
             cout << "Helaas, u voldoet niet aan de leeftijdseisen van de univer"
                  << "siteit." << endl;
             return 1;
-        }
+        }//Afwijzing van de geweigerde.
         else {
             cout << "Vul de eerste letter in van de dag waarop u geboren bent, "
                  << "gebruik 1 letter." << endl;
@@ -95,7 +95,9 @@
                 cout << "Dat is incorrect." << endl;
                 return 1;
             }
-        }
+        }//Berekening en check van de geboortedag.
+
+        //Hier beginnen de vragen over de temperatuur.
         bool Q1 = true;
         bool Q2 = true;
         int C;
