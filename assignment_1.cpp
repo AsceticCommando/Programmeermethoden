@@ -2,7 +2,7 @@
     #include <time.h>
     using namespace std;
 
-    int main ( ) {
+    int main() {
         
         srand(42);
 
@@ -26,7 +26,8 @@
         const int lOct = 31;
         const int lNov = 30;
 
-        int calNum = calYear*365 + calYear/4 - calYear/100 + calYear/400 + calDay;
+        int calNum = calYear*365 + calYear/4 - calYear/100 + calYear/400
+                   + calDay;
 
         if (calMonth == 2) {
             calNum = calNum + lJan;
@@ -50,16 +51,20 @@
             calNum = calNum + lJan + lFeb + lMar + lApr + lMay + lJun + lJul;
         }
         if (calMonth == 9) {
-            calNum = calNum + lJan + lFeb + lMar + lApr + lMay + lJun + lJul + lAug;
+            calNum = calNum + lJan + lFeb + lMar + lApr + lMay + lJun + lJul
+                   + lAug;
         }
         if (calMonth == 10) {
-            calNum = calNum + lJan + lFeb + lMar + lApr + lMay + lJun + lJul + lAug + lSep;
+            calNum = calNum + lJan + lFeb + lMar + lApr + lMay + lJun + lJul
+                   + lAug + lSep;
         }
         if (calMonth == 11) {
-            calNum = calNum + lJan + lFeb + lMar + lApr + lMay + lJun + lJul + lAug + lSep + lOct;
+            calNum = calNum + lJan + lFeb + lMar + lApr + lMay + lJun + lJul
+            + lAug + lSep + lOct;
         }
         if (calMonth == 12) {
-            calNum = calNum + lJan + lFeb + lMar + lApr + lMay + lJun + lJul + lAug + lSep + lOct + lNov;
+            calNum = calNum + lJan + lFeb + lMar + lApr + lMay + lJun + lJul
+                   + lAug + lSep + lOct + lNov;
         }
 
         int calcDay;
@@ -79,9 +84,19 @@
         //time_t currentDate;
         //time (&timer);
 
-        //Hier begint de code voor de invoer en verificatie van de leeftijd van de gebruiker.
+        //Hier begint de code voor de invoer en verificatie van de leeftijd van
+        //de gebruiker.
         cout << "Voer uw geboortejaar in: " << endl;
         cin >> year;
+        if ( year > currentYear ) {
+            cout << "Ben jij een tijdreiziger? Kan je dan de antwoorden voor"
+            << " het tentamen Progammeermethoden 2022-2023 meenemen?" << endl;
+            return 1;
+        }
+        else if ( year < 0 ) {
+            cout << "Esne viator per tempus? Me contactum!" << endl;
+            return 1;
+        }
         if (( currentYear - year < 10 ) || ( currentYear - year ) > 101 ) {
             ageMonths = 12 * ( currentYear - year );
             allowedEntry = false;
@@ -90,22 +105,42 @@
             cout << "Voer uw geboortemaand in ( 1: Januari, 2: Februari, 3: Maa"
                  << "rt, 4: ... ): " << endl;
             cin >> month;
+            if ( month < 1 || month > 12 ) {
+                cout << "Deze maand bestaat niet!" << endl;
+                return 1;
+            }
             ageMonths = 12 * ( currentYear - year ) + ( currentMonth - month );
-            if ((( currentYear - year == 10 ) && ( month > currentMonth )) || (( currentYear - year == 101 ) && ( month < currentMonth ))) {
+            if ((( currentYear - year == 10 ) && ( month > currentMonth )) 
+                || (( currentYear - year == 101 )
+                && ( month < currentMonth ))) {
                 allowedEntry = false;
             }//verificatie van geboortemaand, 10 en 101 jarige worden
              //doorgelaten als ze in dezelfde maand jarig zijn.
             else {
                 cout << "Voer uw geboortedag in: " << endl;
                 cin >> day;
+                if ( day < 1 || (day > lJan && ( month == 1 || month == 3 
+                    || month == 5 || month == 7 || month == 8 || month == 10
+                    || month == 12 )) || ( day > lApr && ( month == 4
+                    || month == 6 || month == 9 || month == 11 ))
+                    || (( day > lFeb+1 && month == 2 && (( year % 4 == 0 
+                    && year % 100 != 0 ) || year % 400 == 0))) || ( day > lFeb
+                    && month == 2 && (( year % 4 != 0 || year % 100 == 0 )
+                    && year % 400 != 0))) {
+                    cout << "Deze dag bestaat niet!" << endl;
+                    return 1;
+                }
                 if ( day > currentDay ) {
                     ageMonths--;
-                }//wanneer gebruiker later in de maand geboren is, leeftijd maanden - 1.
-                if (( currentYear - year == 10 ) && ( month == currentMonth ) && ( day > currentDay )) {
+                }//wanneer gebruiker later in de maand geboren is, leeftijd =
+                 //maanden - 1.
+                if (( currentYear - year == 10 ) && ( month == currentMonth )
+                    && ( day > currentDay )) {
                     allowedEntry = false;
                 }//verificatie van geboortedag 10 jarige, geweigerd wanneer ze
                  //later in de maand jarig zijn.
-                if (( currentYear - year == 101 ) && ( month == currentMonth ) && ( day < currentDay )) {
+                if (( currentYear - year == 101 ) && ( month == currentMonth )
+                    && ( day < currentDay )) {
                     allowedEntry = false;
                 }//verificatie van geboortedag 101 jarige, geweigerd wanneer ze
                  //eerder in de maand jarig zijn.
@@ -145,22 +180,28 @@
                 calcDay = year * 365 + lJan + lFeb + lMar + lApr + lMay + day;
             }
             if (month == 7) {
-                calcDay = year * 365 + lJan + lFeb + lMar + lApr + lMay + lJun + day;
+                calcDay = year * 365 + lJan + lFeb + lMar + lApr + lMay + lJun
+                        + day;
             }
             if (month == 8) {
-                calcDay = year * 365 + lJan + lFeb + lMar + lApr + lMay + lJun + lJul + day;
+                calcDay = year * 365 + lJan + lFeb + lMar + lApr + lMay + lJun
+                        + lJul + day;
             }
             if (month == 9) {
-                calcDay = year * 365 + lJan + lFeb + lMar + lApr + lMay + lJun + lJul + lAug + day;
+                calcDay = year * 365 + lJan + lFeb + lMar + lApr + lMay + lJun
+                        + lJul + lAug + day;
             }
             if (month == 10) {
-                calcDay = year * 365 + lJan + lFeb + lMar + lApr + lMay + lJun + lJul + lAug + lSep + day;
+                calcDay = year * 365 + lJan + lFeb + lMar + lApr + lMay + lJun
+                        + lJul + lAug + lSep + day;
             }
             if (month == 11) {
-                calcDay = year * 365 + lJan + lFeb + lMar + lApr + lMay + lJun + lJul + lAug + lSep + lOct + day;
+                calcDay = year * 365 + lJan + lFeb + lMar + lApr + lMay + lJun
+                        + lJul + lAug + lSep + lOct + day;
             }
             if (month == 12) {
-                calcDay = year * 365 + lJan + lFeb + lMar + lApr + lMay + lJun + lJul + lAug + lSep + lOct + lNov + day;
+                calcDay = year * 365 + lJan + lFeb + lMar + lApr + lMay + lJun
+                        + lJul + lAug + lSep + lOct + lNov + day;
             }
             calcDay = calcDay + year/4 - year/100 + year/400;
             if ((calcDay - calNum) % 7 == 0) {
@@ -209,6 +250,7 @@
                 cout << "Dat is incorrect." << endl;
                 return 1;
             }
+            cout << "Je bent geboren op: " << birthDay << birthDay2 << endl;
         }//Berekening en check van de geboortedag.
 
         //Hier beginnen de vragen over de temperatuur.
@@ -225,7 +267,9 @@
             roundF = F+1;
         }
         int x;
-        cout << "Hoeveel graden Fahrenheit staat gelijk aan " << C <<  " graden Celsius? Type een geheel getal, toets daarna ENTER. "  << endl;
+        cout << "Hoeveel graden Fahrenheit staat gelijk aan " << C
+             << " graden Celsius? Type een geheel getal, toets daarna ENTER. "
+             << endl;
         cin >> x;
         if ((x < roundF-1) || (x > roundF+1)) {
             Q1 = false;
@@ -244,7 +288,10 @@
             roundS = S+1;
         }
         int Z;
-        cout << "Hoeveel graden Celsius staat gelijk aan " << W <<  " graden Fahrenheit? Type een geheel getal, toets daarna ENTER. " << endl;
+        cout << "Hoeveel graden Celsius staat gelijk aan " << W
+             << " graden Fahrenheit? Type een geheel getal,"
+             << " toets daarna ENTER. "
+             << endl;
         cin >> Z;
         if ((Z < roundS-1) || (Z > roundS+1)) {
             Q2 = false;
@@ -253,10 +300,13 @@
         cout << S << " is het goede antwoord." << endl;
 
         if (!Q1 && !Q2) {
-            cout << "Uw antwoorden wijken te veel af van de juiste antwoorden. Helaas bent u niet geschrikt voor een beta-studie." << endl;
+            cout << "Uw antwoorden wijken te veel af van de juiste antwoorden."
+                 <<" Helaas bent u niet geschrikt voor een beta-studie."
+                 << endl;
         }
         else {
-            cout << "Graag zien wij u volgend jaar terug bij een van de beta studies aan de universiteit van Leiden." << endl;
+            cout << "Graag zien wij u volgend jaar terug bij een van de beta"
+                 <<" studies aan de universiteit van Leiden." << endl;
             return 1; 
         }
         return 0;
