@@ -138,9 +138,9 @@
             }//Uitsluiting niet bestaande maanden.
             ageMonths = 12 * ( currentYear - year ) 
                       + ( currentMonth - month );
-            if ((( currentYear - year == 10 ) && ( month > currentMonth )) 
-                || (( currentYear - year == 101 )
-                && ( month < currentMonth ))) {
+            if ((( currentYear - year == 10 ) && 
+                ( month > currentMonth )) || (( currentYear - year 
+                == 101 ) && ( month < currentMonth ))) {
                 allowedEntry = false;
             }//verificatie van geboortemaand, 10 en 101 jarige worden
              //doorgelaten als ze in dezelfde maand jarig zijn.
