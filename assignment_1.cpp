@@ -393,7 +393,8 @@
                     << "neer u de volgende vraag goed beantwoordt." 
                     << endl << endl << "In 1999 werd de verkiezing" 
                     << "'100 besten boeken van de eeuw' gehouden. Op "
-                    << "welke plaatst eindigde 'Le Petit Prince'?"
+                    << "welke plaatst eindigde 'Le Petit Prince'? ges"
+                    << "chreven door Antoine de Saint-Exupery." 
                     << endl << "A) #1 " << endl << "B) #4 " << endl
                     << "C) #82" << endl << "D) Zo'n verkiezing is noo"
                     << "it gehouden." << endl;
