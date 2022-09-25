@@ -3,8 +3,6 @@
     using namespace std;
 
     int main() {
-        bool dbg = false;
-
         srand(420);
 
         const int currentYear = 2022;
@@ -103,6 +101,7 @@
              << endl << "Vervolgens krijgt u enkele vragen om uw affi"
              << "niteit met een beta of alpha studie te verhelderen."
              << endl; 
+        
         //Hier begint de code voor de invoer en verificatie van de
         //leeftijd van de gebruiker.
         cout << "1) Voer eerst uw geboortejaar als volgt in (YYYY), t"
@@ -129,7 +128,7 @@
         else {
             cout << "2) Voer uw geboortemaand in ( 1: Januari, 2: Feb"
                  << "ruari, ... , 11: November, 12: December ), toets"
-                 << "vervolgens op ENTER: ";
+                 << " vervolgens op ENTER: ";
             cin >> month;
             if ( month < 1 || month > 12 ) {
                 cout << "Deze maand staat niet in onze kalender!" 
@@ -391,8 +390,8 @@
                     << "ikt voor een beta-studie." << endl << "U kunt"
                     << " zich wel aanmelden voor een alpha-studie wan"
                     << "neer u de volgende vraag goed beantwoordt." 
-                    << endl << endl << "In 1999 werd de verkiezing" 
-                    << "'100 besten boeken van de eeuw' gehouden. Op "
+                    << endl << endl << "In 1999 werd de verkiezing " 
+                    << "'100 beste boeken van de eeuw' gehouden. Op "
                     << "welke plaatst eindigde 'Le Petit Prince'? ges"
                     << "chreven door Antoine de Saint-Exupery." 
                     << endl << "A) #1 " << endl << "B) #4 " << endl
