@@ -88,9 +88,9 @@
         //infoblokje
         cout << "+---------------------------------------------------"
              << "---+" << endl << "| Gemaakt door:      Lotte Wulfell"
-             << "e en Thijs Vijgeboom |" << endl << "| Jaar van aanko"
-             << "mst: 2022              2019            |" << endl
-             << "| Studentnummers:    3661814           2648261      "
+             << "e en Thijs Vijgeboom |" << endl << "| Studentnummers"
+             << ":    3661814           2648261         |" << endl
+             << "| Jaar van afkomst:  2022              2019         "
              << "   |" << endl << "| Studierichting:    Wiskunde     "
              << "     Biologie        |" << endl << "+---------------"
              << "---------------------------------------+" << endl 
@@ -274,12 +274,13 @@
                birthDay = 'm';
             }//besluit op welke dag de gebruiker geboren is.
 
-            cout << "Vul de eerste letter in van de dag waarop u gebo"
-                 << "ren bent met een kleine letter, toets vervolgens"
-                 << " op ENTER: ";
+            cout << "4) Vul de eerste letter in van de dag waarop u g"
+                 << "eboren bent met een kleine letter, toets vervolg"
+                 << "ens op ENTER: ";
             cin >> weekDay;
             if ( weekDay == 'd' || weekDay == 'z' ) {
-                cout << "Vul ook de tweede letter van de dag in: ";
+                cout << "5) Vul ook de tweede letter van de dag in, t"
+                     << "oets vervolgens op ENTER: ";
                 cin >> weekDay2;
                 if ( weekDay2 == birthDay2 ) {
                     cout << "Correct!" << endl;
