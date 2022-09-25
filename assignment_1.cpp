@@ -269,75 +269,92 @@
         //Hier beginnen de vragen over de temperatuur.
         bool Q1 = true;
         bool Q2 = true;
-        int C;
-        C = ( rand() % 159 ) - 39;
-        float F = ( 9 * C / 5 )+32;
-        int roundF;
-        if ( (int) F >= F - 0,5 ) {
-            roundF = F;
-        }
-        else {
-            roundF = F+1;
-        }
-        int rounddF;
-        int dF = F*100;
-        if ((int) dF >= dF - 0,5) {
-            rounddF = dF;
-        }
-        else {
-            rounddF = dF + 1;
-        }
-        float ddF = rounddF / 100;
+
         int x;
-        cout << "Hoeveel graden Fahrenheit staat gelijk aan " << C
-             << " graden Celsius? Type een geheel getal, toets daarna ENTER. "
+        int y;
+
+        int C1 = ( rand() % 159 ) - 39;
+        float F1 = 9 * (float) C1 / 5 + 32;
+        float tF1 = F1 * 100;
+        if ((int) tF1 < tF1 - 0,5 ) {
+            tF1++;
+        }
+        float dF1 = ((int) tF1) / 100;
+
+        int F2 = ( rand() % 159 ) - 39;
+        float C2 = ( (float) F2 - 32 ) * 5 / 9;
+        float tC2 = C2 * 100;
+        if ((int) tC2 < tC2 - 0,5 ) {
+            tC2++;
+        }
+        float dC2 = ((int) tC2) / 100;
+        cout << "Hoeveel graden Fahrenheit staat gelijk aan " << C1
+             << " graden Celsius? Typ een geheel getal, toets daarna ENTER. "
              << endl;
         cin >> x;
-        if (( x < roundF-1 ) || ( x > roundF+1 )) {
+
+        if (( x < dF1 - 1 ) || ( x > dF1 + 1 )) {
             Q1 = false;
             cout << "Helaas is dit niet het juiste antwoord." << endl;
         }
-        cout << ddF << " is het goede antwoord." << endl;
-        float W;
-        W = ( rand() % 161 ) - 40;
-        float S;
-        int roundS;
-        S = ( W - 32 ) * 5 / 9;
-        if ((int) S >= S - 0,5 ) {
-            roundS = S;
-        }
-        else {
-            roundS = S + 1;
-        }
-        int rounddS;
-        int dS = S*100;
-        if ((int) dS >= dS - 0,5) {
-            rounddS = dS;
-        }
-        else {
-            rounddS = dS + 1;
-        }
-        int ddS = rounddS / 100;
-        int Z;
-        cout << "Hoeveel graden Celsius staat gelijk aan " << W
-             << " graden Fahrenheit? Typ een geheel getal,"
-             << " toets daarna ENTER."
+        cout << dF1 << " is het goede antwoord." << endl;
+
+        cout << "Hoeveel graden Celsius staat gelijk aan " << F2
+             << " graden Fahrenheit? Typ een geheel getal, toets daarna ENTER. "
              << endl;
-        cin >> Z;
-        if ((Z < roundS-1) || (Z > roundS+1)) {
+        cin >> y;
+
+        if (( y < dC2 - 1 ) || ( y > dC2 + 1 )) {
             Q2 = false;
-            cout << "Oeps!" << endl;
+            cout << "Helaas is dit niet het juiste antwoord." << endl;
         }
-        cout << ddS << " is het goede antwoord." << endl;
+        cout << dC2 << " is het goede antwoord." << endl;
 
         if (!Q1 && !Q2) {
+            char antw;
             cout << "Uw antwoorden wijken te veel af van de juiste antwoorden."
-                 <<" Helaas bent u niet geschikt voor een beta-studie."
+                 << " Helaas bent u niet geschikt voor een beta-studie."
                  << endl;
+
+            cout << "De volgende vraag zal vaststellen of u geschikt bent voor "
+                 << "een alpha-studie." << endl;
+            cout << "Typ de juiste letter in en druk op ENTER." << endl;
+
+            if ((ageMonths / 12) >= 30 ) {
+                cout << "In 1999 werd de verkiezing "
+                     << "'100 besten boeken van de eeuw' gehouden. Op welke pla"
+                     << "atst eindigde 'Le Petit Prince'?" << endl;
+                cout << "A) #1 " << endl;
+                cout << "B) #4 " << endl;
+                cout << "C) #82" << endl;
+                cout << "D) Zo'n verkiezing is nooit gehouden." << endl;
+                cin >> antw;
+            }
+            else {
+                cout << "In het boek '1984' wordt gesproken over" 
+                     << "'Het Ministerie van Liefde.' Wat regelt dit ministerie"
+                     << "?" << endl;
+                cout << "A) De sociale omgang tussen burgers." << endl;
+                cout << "B) De staatsveiligheid." << endl;
+                cout << "C) De verdeling van (luxe) goederen." << endl;
+                cout << "D) Fysieke interactie tussen brugers onderling."
+                     << endl;
+                cin >> antw;
+            }
+            if ( antw == 'B' || antw == 'b' ) {
+                cout << "Graag zien wij u volgend jaar terug bij een van de alp"
+                     << "ha studies aan de universiteit van Leiden." << endl;
+                     return 1;
+            }
+            else {
+                cout << "Helaas bent u niet geschikt voor een aan "
+                     << "de universiteit van Leiden."<< endl;
+                     return 1;
+            }
         }
         else {
             cout << "Graag zien wij u volgend jaar terug bij een van de bèta"
-                 <<" studies aan de universiteit van Leiden." << endl;
+                 << " studies aan de universiteit van Leiden." << endl;
             return 1; 
         }
         return 0;
