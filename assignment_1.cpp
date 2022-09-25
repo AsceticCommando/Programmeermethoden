@@ -5,7 +5,7 @@
     int main() {
         bool dbg = false;
 
-        srand(42);
+        srand(420);
 
         const int currentYear = 2022;
         const int currentMonth = 9;
@@ -27,7 +27,8 @@
         const int lOct = 31;
         const int lNov = 30;
 
-        int calNum = calYear*365 + calYear/4 - calYear/100 + calYear/400
+        int calNum = calYear*365 + calYear/4 - calYear/100
+                   + calYear/400
                    + calDay;
 
         if (calMonth == 2) {
@@ -49,23 +50,24 @@
             calNum = calNum + lJan + lFeb + lMar + lApr + lMay + lJun;
         }
         if (calMonth == 8) {
-            calNum = calNum + lJan + lFeb + lMar + lApr + lMay + lJun + lJul;
+            calNum = calNum + lJan + lFeb + lMar + lApr + lMay + lJun
+                   + lJul;
         }
         if (calMonth == 9) {
-            calNum = calNum + lJan + lFeb + lMar + lApr + lMay + lJun + lJul
-                   + lAug;
+            calNum = calNum + lJan + lFeb + lMar + lApr + lMay + lJun
+                   + lJul + lAug;
         }
         if (calMonth == 10) {
-            calNum = calNum + lJan + lFeb + lMar + lApr + lMay + lJun + lJul
-                   + lAug + lSep;
+            calNum = calNum + lJan + lFeb + lMar + lApr + lMay + lJun 
+                   + lJul + lAug + lSep;
         }
         if (calMonth == 11) {
-            calNum = calNum + lJan + lFeb + lMar + lApr + lMay + lJun + lJul
-            + lAug + lSep + lOct;
+            calNum = calNum + lJan + lFeb + lMar + lApr + lMay + lJun 
+                   + lJul + lAug + lSep + lOct;
         }
         if (calMonth == 12) {
-            calNum = calNum + lJan + lFeb + lMar + lApr + lMay + lJun + lJul
-                   + lAug + lSep + lOct + lNov;
+            calNum = calNum + lJan + lFeb + lMar + lApr + lMay + lJun 
+                   + lJul + lAug + lSep + lOct + lNov;
         }
 
         int calcDay;
@@ -84,14 +86,19 @@
 
         //time_t currentDate;
         //time (&timer);
-        
-        cout << "Beste gebruiker, u heeft zich aangemeld als student voor een b"
-             << "eta-studie bij onze universiteit." << endl << "Voordat u toege"
-             << "laten kunt worden, moeten wij enkele vragen aan u stellen om t"
-             << "e verifieren of u hiervoor geschikt bent." << endl;
+
+        //infoblokje
+        cout << "+---------------------------------------------------+" << endl
+             << "| Gemaakt door:   Lotte Wulfelle en Thijs Vijgeboom |" << endl
+             << "| Geboortedata:   11-3-1999         26-9-1998       |" << endl
+             << "| Studentnummers: 3661814           2648261         |" << endl
+             << "| Studierichting: Wiskunde          Biologie        |" << endl
+             << "+---------------------------------------------------+" << endl
+             << endl << ""; 
         //Hier begint de code voor de invoer en verificatie van de leeftijd van
         //de gebruiker.
-        cout << "Om verder te gaan, voert uw geboortejaar in: ";
+        cout << "Voer eerst uw geboortejaar als volgt in (YYYY), druk vervolgen"
+             << "s op ENTER: ";
         cin >> year;
         if ( year > currentYear ) {
             cout << "Ben jij een tijdreiziger? Kan je dan de antwoorden voor"
@@ -101,19 +108,20 @@
         else if ( year < 0 ) {
             cout << "Esne viator per tempus? Me contactum!" << endl;
             return 1;
-        }//Vertaling: Ben jij een tijdreiziger? Neem contact op met mij! Latijn
+        }//Uitsluiting jaartallen onder 0, arbitrair gekozen.
+         //Vertaling: Ben jij een tijdreiziger? Neem contact op met mij! Latijn.
         if (( currentYear - year < 10 ) || ( currentYear - year ) > 101 ) {
             ageMonths = 12 * ( currentYear - year );
             allowedEntry = false;
         }//Verificatie van geboortejaar, 10 en 101 jarige worden doorgelaten
         else {
-            cout << "Voer uw geboortemaand in ( 1: Januari, 2: Februari, 3: Maa"
-                 << "rt, 4: April, etc. ): ";
+            cout << "Voer uw geboortemaand in ( 1: Januari, 2: Februari, ... , "
+                 << "11: November, 12: December ): ";
             cin >> month;
             if ( month < 1 || month > 12 ) {
-                cout << "Deze maand bestaat niet!" << endl;
+                cout << "Deze maand staat niet in onze kalender!" << endl;
                 return 1;
-            }
+            }//Uitsluiting niet bestaande maanden.
             ageMonths = 12 * ( currentYear - year ) + ( currentMonth - month );
             if ((( currentYear - year == 10 ) && ( month > currentMonth )) 
                 || (( currentYear - year == 101 )
@@ -122,7 +130,8 @@
             }//verificatie van geboortemaand, 10 en 101 jarige worden
              //doorgelaten als ze in dezelfde maand jarig zijn.
             else {
-                cout << "Voer uw geboortedag in: ";
+                cout << "Voer uw geboortedag als volgt in (Dd, i.e. tussen 1-31"
+                     << "als u Januari bij de maand heeft ingevoerd): ";
                 cin >> day;
                 if ( day < 1 || (day > lJan && ( month == 1 || month == 3 
                     || month == 5 || month == 7 || month == 8 || month == 10
@@ -132,7 +141,7 @@
                     && year % 100 != 0 ) || year % 400 == 0))) || ( day > lFeb
                     && month == 2 && (( year % 4 != 0 || year % 100 == 0 )
                     && year % 400 != 0))) {
-                    cout << "Deze dag bestaat niet!" << endl;
+                    cout << "Deze dag staat niet in onze kalender!" << endl;
                     return 1;
                 }//voor uitsluiting van niet bestaande dagen
                  //inclusief schikkeljaren.
@@ -165,7 +174,7 @@
             cout << "Helaas, u voldoet niet aan de leeftijdseisen van de univer"
                  << "siteit." << endl;
             return 1;
-        }//Afwijzing van de gebruiker.
+        }//Afwijzing van de gebruiker voor het eerste deel van de test.
         else {
             if ( month == 1 ) {
                 calcDay = year * 365 + day;
@@ -208,10 +217,11 @@
             if ( month == 12 ) {
                 calcDay = year * 365 + lJan + lFeb + lMar + lApr + lMay + lJun
                         + lJul + lAug + lSep + lOct + lNov + day;
-            }//Hier berekent is het aantal dagen vanaf jaar 0 tot dag van
-             //de gebruiker, excl. schrikkels
-            calcDay = calcDay + year/4 - year/100 + year/400; //berekening van
-                                                              //schrikkeldagen
+            }//Hier berekent is het aantal dagen vanaf jaar 0 tot dag waarop
+             //de gebruiker geboren is, excl. schrikkeljaren.
+            calcDay = calcDay + year/4 - year/100 + year/400; //Toevoeging van
+                                                              //schrikkeljaren
+            //Hier wordt de dag berekend waarop de gebruiker geboren is.
             if (( calcDay - calNum ) % 7 == 0) {
                birthDay = 'd';
                birthDay2 = 'i';
@@ -290,6 +300,7 @@
         }
         float dC2 = (int) tC2;
         dC2 = dC2 / 100;
+
         cout << "Hoeveel graden Fahrenheit staat gelijk aan " << C1
              << " graden Celsius? Typ een geheel getal, toets daarna ENTER. "
              << endl;
