@@ -87,20 +87,20 @@
 
         //infoblokje
         cout << "+---------------------------------------------------"
-             << "+" << endl << "| Gemaakt door:   Lotte Wulfelle en T"
-             << "hijs Vijgeboom |" << endl << "| Geboortedata:   11-3"
-             << "-1999         26-9-1998       |" << endl << "| Stude"
-             << "ntnummers: 3661814           2648261         |"
-             << endl << "| Studierichting: Wiskunde          Biologie"
-             << "        |" << endl << "+----------------------------"
-             << "-----------------------+" << endl << endl << "Welkom"
-             << " bij de test voor toelating bij onze universiteit."
-             << endl << "De test bestaat uit twee delen, in het eerst"
-             << "e deel vragen wij om uw geboortegegevens in te voere"
-             << "n om te kijken of u voldoet aan onze leeftijdseisen."
-             << endl << "Vervolgens krijgt u enkele vragen om uw affi"
-             << "niteit met een beta of alpha studie te verhelderen."
-             << endl; 
+             << "---+" << endl << "| Gemaakt door:      Lotte Wulfell"
+             << "e en Thijs Vijgeboom |" << endl << "| Jaar van aanko"
+             << "mst: 2022              2019            |" << endl
+             << "| Studentnummers:    3661814           2648261      "
+             << "   |" << endl << "| Studierichting:    Wiskunde     "
+             << "     Biologie        |" << endl << "+---------------"
+             << "---------------------------------------+" << endl 
+             << endl << "Welkom" << " bij de test voor toelating bij "
+             << "onze universiteit." << endl << "De test bestaat uit "
+             << "twee delen, in het eerste deel vragen wij om uw gebo"
+             << "ortegegevens in te voeren om te kijken of u voldoet "
+             << "aan onze leeftijdseisen." << endl << "Vervolgens kri"
+             << "jgt u enkele vragen om uw affiniteit met een beta of"
+             << " alpha studie te verhelderen." << endl; 
         
         //Hier begint de code voor de invoer en verificatie van de
         //leeftijd van de gebruiker.
