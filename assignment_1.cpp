@@ -3,17 +3,17 @@
     using namespace std;
 
     int main() {
-        srand(420);
+        srand(420);                                             //Seed
 
-        const int currentYear = 2022;
+        const int currentYear = 2022;    //Constantes voor huidige dag
         const int currentMonth = 9;
-        const int currentDay = 21;
+        const int currentDay = 26;
  
-        const int calYear = 1901;
+        const int calYear = 1901;                           //Ijk data
         const int calMonth = 1;
         const int calDay = 1;
 
-        const int lJan = 31;
+        const int lJan = 31;                          //Days per month
         const int lFeb = 28;
         const int lMar = 31;
         const int lApr = 30;
@@ -27,7 +27,7 @@
 
         int calNum = calYear*365 + calYear/4 - calYear/100
                    + calYear/400
-                   + calDay;
+                   + calDay; //
 
         if (calMonth == 2) {
             calNum = calNum + lJan;
