@@ -93,11 +93,10 @@
              << "| Geboortedata:   11-3-1999         26-9-1998       |" << endl
              << "| Studentnummers: 3661814           2648261         |" << endl
              << "| Studierichting: Wiskunde          Biologie        |" << endl
-             << "+---------------------------------------------------+" << endl
-             << endl << ""; 
+             << "+---------------------------------------------------+" << endl; 
         //Hier begint de code voor de invoer en verificatie van de leeftijd van
         //de gebruiker.
-        cout << "Voer eerst uw geboortejaar als volgt in (YYYY), druk vervolgen"
+        cout << "Voer eerst uw geboortejaar als volgt in, druk vervolgen"
              << "s op ENTER: ";
         cin >> year;
         if ( year > currentYear ) {
@@ -130,8 +129,7 @@
             }//verificatie van geboortemaand, 10 en 101 jarige worden
              //doorgelaten als ze in dezelfde maand jarig zijn.
             else {
-                cout << "Voer uw geboortedag als volgt in (Dd, i.e. tussen 1-31"
-                     << "als u Januari bij de maand heeft ingevoerd): ";
+                cout << "Voer uw geboortedag als volgt in ( 1, 2, ..., 31 ): ";
                 cin >> day;
                 if ( day < 1 || (day > lJan && ( month == 1 || month == 3 
                     || month == 5 || month == 7 || month == 8 || month == 10
@@ -248,8 +246,7 @@
                birthDay = 'm';
             }//besluit op welke dag de gebruiker geboren is.
              //zie bovenaan voor uitleg calNum en verslag voor de formules.
-            cout << "Vul de eerste letter in van de dag waarop u geboren bent:"
-                 << " ";
+            cout << "Vul de eerste letter in van de dag waarop u geboren bent, gebruik een kleine letter: ";
             cin >> weekDay;
             if ( weekDay == 'd' || weekDay == 'z' ) {
                 cout << "Vul ook de tweede letter van de dag in: ";
@@ -261,6 +258,7 @@
                 else {
                     cout << "Dat is incorrect. Leer eerst uzelf kennen zodat u " 
                          << "met zekerheid aan uw studie kan beginnen." << endl;
+                    cout << "Je bent geboren op: " << birthDay << birthDay2 << endl;
                     return 1;                    
                 }
             }
@@ -271,6 +269,7 @@
             else {
                 cout << "Dat is incorrect. Leer eerst uzelf kennen zodat u " 
                      << "met zekerheid aan uw studie kan beginnen." << endl;
+                cout << "Je bent geboren op: " << birthDay << birthDay2 << endl;
                 return 1;
             }
             cout << "Je bent geboren op: " << birthDay << birthDay2 << endl;
