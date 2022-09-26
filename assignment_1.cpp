@@ -2,7 +2,7 @@
     //Compiler:          g++.exe (Rev1, Built by MSYS2 project) 12.2.0
     //Programmeerpgave:                                              1
     //Gemaakt op:                                           26-09-2022
-    //Namen:                   Vijgeboom, Thijs;       Wulfelle, Lotte
+    //Namen:                   Vijgeboom, Thijs;       Wulffele, Lotte
     //Studentnummers:                   2648261;               3661814
     //Jaar van aankomst:                   2019;                  2022
     //Studierichting:                  Biologie;              Wiskunde
@@ -100,7 +100,7 @@
              << "---+" << endl << "| Programmeermethoden; eerste prog"
              << "rammeeropgave        |" << endl << "| Gemaakt op;   "
              << "       26-09-2022                      |" << endl
-             << "| Gemaakt door:      Thijs Vijgeboom en Lotte Wulfel"
+             << "| Gemaakt door:      Thijs Vijgeboom en Lotte Wulffe"
              << "le |" << endl << "| Studentnummers:    2648261      " 
              << "      3661814        |" << endl << "| Jaar van aanko"
              << "mst: 2019               2022           |" << endl
