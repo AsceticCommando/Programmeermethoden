@@ -1,5 +1,10 @@
-    //*Infoblok programmeurs*
-    
+    //Infoblok voor programmeurs
+    //Compiler: g++.exe (Rev1, Built by MSYS2 project) 12.2.0
+    //Namen:          Vijgeboom, Thijs;       Wulfelle, Lotte
+    //Studentnummers:          2648261;               3661814
+    //Jaar van aankomst:          2019;                  2022
+    //Studierichting:         Biologie;              Wiskunde
+
     #include <iostream>
     #include <time.h>
     using namespace std;
@@ -87,21 +92,22 @@
         char birthDay;  //Opslag van (week)dag door programma berekend
         char birthDay2;
 
+                                                            //infoblok
         cout << "+---------------------------------------------------"
-             << "+" << endl << "| Gemaakt door:   Lotte Wulfelle en T"
-             << "hijs Vijgeboom |" << endl << "| Geboortedata:   11-3"
-             << "-1999         26-9-1998       |" << endl << "| Stude"
-             << "ntnummers: 3661814           2648261         |"
-             << endl << "| Studierichting: Wiskunde          Biologie"
-             << "        |" << endl << "+----------------------------"
-             << "-----------------------+" << endl << endl << "Welkom"
-             << " bij de test voor toelating bij onze universiteit."
-             << endl << "De test bestaat uit twee delen, in het eerst"
-             << "e deel vragen wij om uw geboortegegevens in te voere"
-             << "n om te kijken of u voldoet aan onze leeftijdseisen."
-             << endl << "Vervolgens krijgt u enkele vragen om uw affi"
-             << "niteit met een beta of alpha studie te verhelderen."
-             << endl;                                       //infoblok
+             << "---+" << endl << "| Gemaakt door:      Thijs Vijgebo"
+             << "om en Lotte Wulfelle |" << endl << "| Studentnummers"
+             << ":    2648261            3661814        |" << endl 
+             << "| Jaar van aankomst: 2019               2022        "
+             << "   |" << endl << "| Studierichting:    Biologie     "
+             << "      Wiskunde       |" << endl << "+---------------"
+             << "---------------------------------------+" << endl
+             << endl << "Welkom bij de test voor toelating bij onze u"
+             << "niversiteit." << endl << "De test bestaat uit twee d"
+             << "elen, in het eerste deel vragen wij om uw geboortege"
+             << "gevens" << endl << "in te voeren om te kijken of u v"
+             << "oldoet aan onze leeftijdseisen." << endl << "Vervolg"
+             << "ens krijgt u enkele vragen om uw affiniteit met een "
+             << "beta of alpha studie te verhelderen." << endl;
         
         //Hier begint de code voor de invoer en verificatie van de
         //leeftijd van de gebruiker.
@@ -187,6 +193,10 @@
             cout << "Gefeliciteerd, met uw verjaardag!" << endl;
         }//Felicitaties voor de jarige
         
+        if ( month != currentMonth && day == currentDay ) {
+            cout << "Gefeliciteerd, met uw vermaanding!" << endl;
+        }//Felicitaties voor de maandige
+
         if ( allowedEntry ) {
             cout << "U voldoet aan de leeftijdseisen voor de universi"
                  << "teit." << endl;
