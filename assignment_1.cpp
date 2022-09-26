@@ -115,7 +115,7 @@
             return 1;
         }//Uitsluiting van ongeldige jaartallen boven de huidige.
         else if ( year < 0 ) {
-            cout << "Esne viator per tempus? Me contactum!" << endl;
+            cout << "Esne viator per tempus? Me accede!" << endl;
             return 1;
         }//Uitsluiting jaartallen onder 0, arbitrair gekozen.
          //Vertaling: Ben jij een tijdreiziger? 
