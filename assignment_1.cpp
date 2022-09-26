@@ -1,9 +1,12 @@
     //Infoblok voor programmeurs
-    //Compiler: g++.exe (Rev1, Built by MSYS2 project) 12.2.0
-    //Namen:          Vijgeboom, Thijs;       Wulfelle, Lotte
-    //Studentnummers:          2648261;               3661814
-    //Jaar van aankomst:          2019;                  2022
-    //Studierichting:         Biologie;              Wiskunde
+    //Compiler:          g++.exe (Rev1, Built by MSYS2 project) 12.2.0
+    //Programmeerpgave:                                              1
+    //Gemaakt op:                                           26-09-2022
+    //Namen:                   Vijgeboom, Thijs;       Wulfelle, Lotte
+    //Studentnummers:                   2648261;               3661814
+    //Jaar van aankomst:                   2019;                  2022
+    //Studierichting:                  Biologie;              Wiskunde
+    //Gebruikte IDE:         Visual Studio Code;          Sublime Text
 
     #include <iostream>
     #include <time.h>
@@ -94,20 +97,23 @@
 
                                                             //infoblok
         cout << "+---------------------------------------------------"
-             << "---+" << endl << "| Gemaakt door:      Thijs Vijgebo"
-             << "om en Lotte Wulfelle |" << endl << "| Studentnummers"
-             << ":    2648261            3661814        |" << endl 
-             << "| Jaar van aankomst: 2019               2022        "
-             << "   |" << endl << "| Studierichting:    Biologie     "
-             << "      Wiskunde       |" << endl << "+---------------"
-             << "---------------------------------------+" << endl
-             << endl << "Welkom bij de test voor toelating bij onze u"
-             << "niversiteit." << endl << "De test bestaat uit twee d"
-             << "elen, in het eerste deel vragen wij om uw geboortege"
-             << "gevens" << endl << "in te voeren om te kijken of u v"
-             << "oldoet aan onze leeftijdseisen." << endl << "Vervolg"
-             << "ens krijgt u enkele vragen om uw affiniteit met een "
-             << "beta of alpha studie te verhelderen." << endl;
+             << "---+" << endl << "| Programmeermethoden; eerste prog"
+             << "rammeeropgave        |" << endl << "| Gemaakt op;   "
+             << "       26-09-2022                      |" << endl
+             << "| Gemaakt door:      Thijs Vijgeboom en Lotte Wulfel"
+             << "le |" << endl << "| Studentnummers:    2648261      " 
+             << "      3661814        |" << endl << "| Jaar van aanko"
+             << "mst: 2019               2022           |" << endl
+             << "| Studierichting:    Biologie           Wiskunde    "
+             << "   |" << endl << "+---------------------------------"
+             << "---------------------+" << endl << endl << "Welkom b"
+             << "ij de test voor toelating bij onze universiteit." 
+             << endl << "De test bestaat uit twee delen, in het eerst"
+             << "e deel vragen wij om" << endl << "uw geboortegegeven"
+             << "s in te voeren om te kijken of u voldoet aan onze le"
+             << "eftijdseisen." << endl << "Vervolgens krijgt u enkel"
+             << "e vragen om uw affiniteit met een beta of alpha stud"
+             << "ie te verhelderen." << endl << endl;
         
         //Hier begint de code voor de invoer en verificatie van de
         //leeftijd van de gebruiker.
