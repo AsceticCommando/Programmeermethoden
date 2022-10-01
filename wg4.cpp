@@ -1,5 +1,6 @@
     #include<iostream>
     #include<string>
+    #include<fstream>
     using namespace std;
 
     void createInfoblock() {
@@ -17,21 +18,18 @@
 
     double power(double x, int y) {
         double answer = x;
-        for(int i = 1; i < y; i++){
+        for(int i = 1; i < y; i++) {
             answer = answer*x;
         }
         return answer;
     }
 
     int countInvertNumbers(int n) {
-        char k;
-        string s = to_string(n);
-        int amount = s.size();
-
-        for(int i = 0; i < amount; i++) {
-            k = s.back();
-            cout << k << endl;
-            s.pop_back();
+        int amount = 0;
+        while(n > 0){
+            cout << n % 10 << endl;
+            n = n / 10;
+            amount++;
         }
         return amount;
     }
@@ -46,7 +44,10 @@
         double x;
         int y;
         double z;
+        int n;
+
         createInfoblock();
+
         cout << "Vul een breuk som in als volgt ('noemer1' 'deler 1' 'noemer 2' 'deler 2') zonder aanhalingsteken: ";
         cin >> n1;
         cin >> d1;
@@ -54,11 +55,15 @@
         cin >> d2;
         addDivision(n1, d1, n2, d2, n3, d3);
         cout << "Het antwoord is: " << n3 << "/" << d3 << endl;
+
         cout << "Geef nu een machtsom op als volgt ('getal' 'macht') waarbij de macht een heel getal is: ";
         cin >> x;
         cin >> y;
         z = power(x, y);
         cout << "Het antwoord is: " << z << endl;
-        cout << countInvertNumbers(12345) << endl;
+        
+        cout << "Voer een geheel getal in:";
+        cin >> n;
+        cout << "Dit is achterstevoren: " << countInvertNumbers(n) << endl;
         return 0;
     }//main
