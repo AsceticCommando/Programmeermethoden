@@ -4,7 +4,7 @@
     using namespace std;
 
     int squareNumber(int x) {
-        return x*x;
+        return x*x; 
     }
 
     void createFile() {
