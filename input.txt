@@ -1,7 +1,1 @@
-Hallo aan de mensen,
-
-Dit is testbestand de 1e.
-Je hebt zojuist de 5 mooiste seconden van je leven verspild,
-door dit te lezen.
-
-[input haiku].
+Dit is een testbestand
