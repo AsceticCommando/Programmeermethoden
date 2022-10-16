@@ -3,9 +3,6 @@
     #include<string>
     using namespace std;
 
-    int pincode = 1234;
-    bool faultyPin = false;
-
     int invertPin (int pin) {
         int invertedPin = 0;
         for (int p = 0; p < 4; p++) {
@@ -101,10 +98,8 @@
                     encounteredNum = false;
                     int counter = 0;
                     if (checkPin(foundNum)) {
-                        pincode = invertPin(foundNum);
-                        pinnum = pincode;
-                        pin = pincode;
-                        pinCount = 0;
+                        pinnum = invertPin(foundNum);
+                        pin = pinnum;
                         cout << "Nieuwe pincode is: " << foundNum 
                         << endl;
                     }
@@ -133,6 +128,7 @@
     }
 
     int main() {
+        int pincode = 0000;
         encryptFile(invertPin(pincode));
         return 0;
     }
