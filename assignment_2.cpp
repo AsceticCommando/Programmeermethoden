@@ -3,7 +3,7 @@
     #include<string>
     using namespace std;
 
-    int pincode = 2222;
+    int pincode = 1234;
     bool faultyPin = false;
 
     int invertPin (int pin) {
@@ -54,7 +54,7 @@
         ifstream input("input.txt");
         ofstream output("output.txt");
 
-        char kar = input.get();
+        char nextKar = input.get();
 
         int pinCount = 0;
         int pinnum = pin;
@@ -63,6 +63,9 @@
         bool encounteredNum = false;
 
         while (!input.eof()) {
+            char kar = nextKar;
+            nextKar = input.get();
+            
             if (kar == '\r' || kar == '\n') {
                 pinnum = pin;
                 pinCount = 0;
@@ -71,9 +74,10 @@
             else if (kar == '\t') {
                 output.put(kar);
             }
-            else if (kar != '\t' && kar != '\r' && kar != '\n') {
+            else {
                 pinCount++;
-                output.put(kar + (pinnum % 10));
+                int currNum = pinnum % 10;
+                output.put((kar + currNum - 32) % 95 + 32);
                 if (pinCount == 4) {
                     pinnum = pin;
                     pinCount = 0;
@@ -82,43 +86,45 @@
                     pinnum /= 10;
                 }
                 if (kar >= '0' && kar <= '9') {
-                    encounteredNum == true;
+                    encounteredNum = true;
                     if ((foundNum < INT_MAX / 10) || 
                         (foundNum == INT_MAX / 10 && 
                         (kar - '0') <= INT_MAX % 10)) {
                         foundNum = foundNum * 10 + (kar - '0');
-                        cout << foundNum << endl;
                     }
                     else {
                         foundNum = INT_MAX;
                     }
                 }
-                if (kar < '0' || kar > '9'  
+                if ((nextKar < '0' || nextKar > '9')  
                     && encounteredNum == true) {
-                    encounteredNum == false;
+                    encounteredNum = false;
+                    int counter = 0;
                     if (checkPin(foundNum)) {
                         pincode = invertPin(foundNum);
-                        pinnum = invertPin(foundNum);
+                        pinnum = pincode;
+                        pin = pincode;
                         pinCount = 0;
-                        cout << "Nieuwe pincode gevonden." << endl;
+                        cout << "Nieuwe pincode is: " << foundNum 
+                        << endl;
                     }
-                    int counter = 0;
                     if (!checkLychrel(foundNum, counter)) {
-                        cout << "Het is gevonden getal is geen Ly"
-                             << "chrel getal. Het vormt na " 
+                        cout << "Het getal " << foundNum << " is geen"
+                             << " Lychrel getal. Het vormt na " 
                              << counter << " iteraties een palind"
                              << "room." << endl;
                     }
                     else {
-                        cout << "Het gevonden getal vormt na "
-                             << INT_MAX << " geen palindroom en i"
-                             << "s daarmee vermoedelijk een Lychr"
-                             << "el getal." << endl;
+                        cout << "Het gevonden getal " << foundNum
+                             << " wordt groter dan " << INT_MAX 
+                             << " na " << counter << " iteraties zond"
+                             << "er een palindroom te vormen en is du"
+                             << "s vermoedelijk een Lychrel getal." 
+                             << endl;
                     }
                     foundNum = 0;
                 }
             }
-            kar = input.get();
         }
     }
     
