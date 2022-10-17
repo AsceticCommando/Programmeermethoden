@@ -35,7 +35,7 @@
              << "teerde informatie verschaffen omtrent getallen die i"
              << "n ene te coderen bestand voorkomen." << endl << "Wel"
              << "kom!" << endl << endl;
-  }
+    }
 
 
     int invertPin (int pin) {
