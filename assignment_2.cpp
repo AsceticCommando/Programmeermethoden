@@ -37,7 +37,6 @@
              << "kom!" << endl << endl;
     }
 
-
     int invertPin (int pin) {
         int invertedPin = 0;
         for (int p = 0; p < 4; p++) {
