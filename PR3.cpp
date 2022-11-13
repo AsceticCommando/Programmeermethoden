@@ -27,18 +27,27 @@
                 breedte = 5;
                 aan = 'X';
                 uit = '.';
-                vulRandom();
+                maakSchoon();
             } // constructor
             void drukAf() {
-                for (int i = 0; i < hoogte; i++) {
+                for (int i = 0; i <= hoogte; i++) {
+                    if (i != hoogte)
+                        cout << hoogte - i;
                     for (int j = 0; j < breedte; j++) {
-                        if (dewereld[i][j])
+                        if (dewereld[i][j] && i != hoogte) {
                             cout << ' ' << aan;
-                        else
+                        }
+                        else if (i != hoogte) {
                             cout << ' ' << uit;
+                        }
+                        else {
+                            char letter = 'A' + j;
+                            cout << ' ' << letter;
+                        }
                     }// for j
                     cout << endl;
-                } // for i
+                }
+                // for i
             }// functie drukaf
             void losOp() {
                 for (int i = 0; i < hoogte; i++) {
@@ -52,7 +61,7 @@
                 } // for i
             }
             void vulRandom() {
-
+                
             }
             void maakSchoon() {
                 for (int i = 0; i < hoogte; i++) {
@@ -70,40 +79,48 @@
                         }
                     }
                 }
-                percentage = correct/(hoogte*breedte)
+                percentage = (float)correct/(hoogte*breedte);
             }
             void zetParameters() {
                 cout << "U kunt hier uw eigen parameters kiezen:" << endl;
                 cout << "Type als geheel getal (2-20) de door uw gewenste breedte van het speelvlak in." << endl;
-                while(b >= '0' &&) {
-                }
+                cin >> breedte;
                 cout << "Type als geheel getal (2-20) de door uw gewenste hoogte van het speelvlak in." << endl;
                 cin >> hoogte;
                 cout << "Welk symbool wilt u gebruiken voor een lampje dat uit is?" << endl;
                 cin >> uit;
                 cout << "Welk symbool wilt u gebruiken voor een lampje dat aan is?" << endl;
                 cin >> aan;
+                maakSchoon();
                 // vraag en invoer fietsband-optie of gewoon speelveld (j/n)
                 // een pen (0/1/2) 0: bij lopen blijven lampen gelijk 1: lopen doet lampen aan 2: lopen doet lampen uit
             }
-            void doeZet(string zet) {
+            void doeZet(string zet, bool & gevonden) {
                 char letter = zet[0];
                 char nummer = zet[1];
-                if (((letter >= 'A' && letter < 'A' + breedte) || (letter >= 'a' && letter < 'a' + breedte)) && nummer > '0' && nummer <= '0' + hoogte) {
-                    int posi = letter - 'A';
-                    int posj = ('0' + hoogte - nummer);
+                if ((letter >= 'A' && letter < 'A' + breedte) && (nummer > '0' && nummer <= '0' + hoogte)) {
+                    int posi = ('0' + hoogte - nummer);
+                    int posj = letter - 'A';
+                    cout << posi << " " << posj << endl;
                     for (int i = -1; i <= 1; i++) {
-                       for (int j = -1; j <= 1; j++) {
-                           if (posi + i >= 0 && posi + i <= breedte - 1 && posj + j >= 0 && posj + j <= hoogte - 1) {
-                               dewereld[posi + i][posj + j] = !dewereld[posi + i][posj + j];
-                           }
-                       }
+                        for (int j = -1; j <= 1; j++) {
+                            if ((posi + i >= 0 && posi + i <= breedte - 1) && (posj + j >= 0 && posj + j <= hoogte - 1) && (i == 0 || j == 0)) {
+                                cout << posi + i << " " << posj + j << endl;
+                                char ervoor = dewereld[posi + i][posj + j];
+                                cout << "Dit is ervoor: "<< ervoor << " ";
+                                dewereld[posi + i][posj + j] = !dewereld[posi + i][posj + j];
+                                char erna = dewereld[posi + i][posj + j];
+                                cout << "Dit is erna: " << erna << endl;
+                            }
+                        }
                     }
+                    gevonden = true;
                 }
                 else {
                     cout << "Deze zet is niet geldig. Gebruik schaaknotatie om een zet te doen (i.e. [A1])." << endl;
                 }
             }
+
             // functie stoppen
             //  programma sluit af
             
@@ -198,10 +215,11 @@
     }
     
     // submenu puzzelen
-    void puzzelMenu(Puzzel mijnPuzzel) { // moet ongetwijfeld geen 'int' zijn, maar welke functie wel?
+    void puzzelMenu(Puzzel mijnPuzzel) {
         char choice;
         bool back = false;
         while (!back) {
+            mijnPuzzel.drukAf();
             cout << "[T]erug, [V]olg, [O]plossen van 5x5 puzzel, [A]fspelen oplossing, [Z]et doen" << endl;
             cin >> choice;
             switch (choice) {
@@ -216,22 +234,19 @@
                     //los op en laat zien
                 case 'Z': case 'z':
                     cout << "Doe een zet doormiddel van schaaknotatie (i.e. [A1])." << endl;
-                    string zet;
-                    char z = cin.get();
+                    char z;
                     bool gevonden = false;
-                    while (z != '\n') {
-                        if ((z >= 'A' && z <= 'Z') || (z >= 'a' && z <= 'z') && !gevonden) {
-                            zet += z;
-                            gevonden = true;
-                        }
-                        else if (gevonden == true && (z >= '1' && z <= '9')) {
+                    while (!gevonden) {
+                        string zet;
+                        while(zet.size() < 2) {
+                            cin >> z;
                             zet += z;
                         }
-                        z = cin.get();
+                        mijnPuzzel.doeZet(zet, gevonden);
                     }
-                    mijnPuzzel.doeZet(zet);
+                    
                     //doe een zet
-        }
+            }
         }
     }
 
