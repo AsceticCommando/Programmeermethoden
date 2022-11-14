@@ -29,9 +29,8 @@
         }//checken of het niet boven de bovengrens komt vinden en
          //returnen getal achtereenvolgende nummers
         return getal;
-    }
-    // functie random getal
-    //  geeft random getal tussen 0 en 999
+    }//functie random getal
+     //geeft random getal tussen 0 en 999
     long randomgetal() {
         static long getal = 42;
         getal = (221 * getal + 1) % 1000;
@@ -40,7 +39,8 @@
     void sluitAf(bool & terug) {
         terug = true;
         afsluiten = true;
-    }
+    }//functie stoppen
+     //programma sluit af
 
     //klasse aanmaken
     class Puzzel {
@@ -76,9 +76,9 @@
                      << endl;
                 char keuze;
                 while (!terug) {
-                    cout << "[T]erug, [B]reedte, [H]oogte, [P]ercentage, [A]an, [U]it, p[E]n, a[F]sluiten"
+                    cout << "[T]erug, [B]reedte, [H]oogte, [P]ercenta"
+                         << "ge, [A]an, [U]it, p[E]n, a[F]sluiten"
                          << endl;
-                    
                     keuze = cin.get();
                     while (keuze == '\n') {
                         keuze = cin.get();
@@ -88,7 +88,8 @@
                             terug = true;
                             break;
                         case 'B': case 'b': {
-                            cout << "Voer een nieuwe breedte in (2-20)" << endl;
+                            cout << "Voer een nieuwe breedte in"
+                                 << " (2-20)" << endl;
                             int nieuweBreedte = leesGetal();
                             if (nieuweBreedte <= 20 && nieuweBreedte >= 2) {
                                 breedte = nieuweBreedte;
@@ -96,7 +97,8 @@
                             break;
                         }
                         case 'H': case 'h': {
-                            cout << "Voer een nieuwe hoogte in (2-20)" << endl;
+                            cout << "Voer een nieuwe hoogte in (2-20)"
+                                 << endl;
                             int nieuweHoogte = leesGetal();
                             if (nieuweHoogte <= 20 && nieuweHoogte >= 2) {
                                 hoogte = nieuweHoogte;
@@ -104,9 +106,12 @@
                             break;
                         }
                         case 'P': case 'p': {
-                            cout << "Voer in welk percentage u wilt gebruiken voor de random functie (0-100)" << endl;
+                            cout << "Voer in welk percentage u wilt g"
+                                 << "ebruiken voor de random functie "
+                                 << "(0-100)" << endl;
                             int nieuwePerc = leesGetal();
-                            if (nieuwePerc <= 100 && nieuwePerc >= 0) {
+                            if (nieuwePerc <= 100 
+                                && nieuwePerc >= 0) {
                                 percentage = nieuwePerc;
                             }
                             break;
@@ -142,13 +147,18 @@
                         }
                     }
                 }
-            }
+            }// functie random
+             // speelveld wordt random gevult door willekeurige lampen 
+             //aan en uit te doen; hoeft geen oplosbare puzzel op 
+             //te leveren
             void schakel(int i, int j) {
                 dewereld[i][j] = !dewereld[i][j];
-            }
+            }// functie toggle
+             // laat aan lampje uit, en uit lampje aan gaan
+             // is geen zet!! enkel het lampje zelf reageerd
             void teken(int i, int j, bool stat) {
                 dewereld[i][j] = stat;
-            }        
+            }//alternatieve functie voor aan- en uitzetten lampje        
             void drukAf() {
                 for (int i = 0; i <= hoogte; i++) {
                     if (i != hoogte)
@@ -175,13 +185,15 @@
                         dewereld[i][j] = false;
                     }
                 }
-            }
+            }// functie maakschoon
+             // alle lampen van het speelveld gaan uit
             bool doeZet(string zet) {
                 char letter = zet[0];
                 zet.erase(0, 1);
                 int nummer = 0;
                 while (zet.size() != 0) {
                     nummer = nummer * 10 + (zet[0] - '0');
+                    zet.erase(0, 1);
                 }
                 if ((letter >= 'A' && letter < 'A' + breedte) 
                     && (nummer > 0 && nummer <= hoogte)) {
@@ -259,33 +271,19 @@
                             doeZet("D5");
                         }
                         else {
-                            cout << "Er is geen mogelijke oplossing gevonden." << endl;
+                            cout << "Er is geen mogelijke oplossing g"
+                                 << "evonden." << endl;
                             break;
                         }
                         volg();
                     }
                 }
                 else {
-                    cout << "Zet de hoogte en breedte op 5x5 om deze functie te gebruiken." << endl;
+                    cout << "Zet de hoogte en breedte op 5x5 om deze "
+                         << "functie te gebruiken." << endl;
                 }
-            }
-            // functie stoppen
-            //  programma sluit af
-            
-            // functie terug
-            // stuurt gebruiker terug naar hoofdmenu
-            
-            // functie maakschoon
-            // alle lampen van het speelveld gaan uit
-            
-            // functie random
-            // speelveld wordt random gevult door willekeurige lampen 
-            //aan en uit te doen; hoeft geen oplosbare puzzel op 
-            //te leveren
-            
-            // functie toggle
-            // laat aan lampje uit, en uit lampje aan gaan
-            // is geen zet!! enkel het lampje zelf reageerd
+            }// functie oplossen
+             // lost 5x5 functie op
             
             // functie genereer
             // geen functie op ingevoerde getal uit te voeren
@@ -316,24 +314,25 @@
     }
 
     
-    // functie oplossen
-    // lost 5x5 functie op
-    // aantal gedane zetten en lampjes die aan zijn afdrukken naast speelveld
+    // aantal gedane zetten en lampjes die aan zijn afdrukken naast 
+    //speelveld
     
     // functie leesGetal
 
     // submenu tekenen
-    void tekenMenu(Puzzel & mijnPuzzel) { // moet ongetwijfeld geen 'int' zijn, maar welke functie wel?
+    void tekenMenu(Puzzel & mijnPuzzel) {
         char keuze;
         int cursorx = 0;
         int cursory = 0;
         bool terug = false;
         while (!terug) {
             mijnPuzzel.drukAf();
-            cout << "[T]erug, s[C]hoon, [R]andom, t[O]ggle, [G]enereer, a[F]sluiten" << endl;
-            cout << "Gebruik [WASD] en [ENTER] om de cursor te bewegen." << endl;
-            cout << "Uw cursor staat op: " << (char)('A' + cursorx) << mijnPuzzel.pakHoogte() - cursory
-                 << endl;
+            cout << "[T]erug, s[C]hoon, [R]andom, t[O]ggle, [G]eneree"
+                 << "r, a[F]sluiten" << endl;
+            cout << "Gebruik [WASD] en [ENTER] om de cursor te bewege"
+                 << "n." << endl;
+            cout << "Uw cursor staat op: " << (char)('A' + cursorx) 
+                 << mijnPuzzel.pakHoogte() - cursory << endl;
             keuze = cin.get();
             while (keuze == '\n') {
                 keuze = cin.get();
@@ -343,7 +342,8 @@
                     terug = true;
                     break;
                 case 'W': case 'w':
-                    if (mijnPuzzel.pakHoogte() - cursory < mijnPuzzel.pakHoogte()) {
+                    if (mijnPuzzel.pakHoogte() 
+                        - cursory < mijnPuzzel.pakHoogte()) {
                         cursory--;
                         if (mijnPuzzel.pakPen() == 1) {
                             mijnPuzzel.teken(cursory, cursorx, true);
@@ -415,7 +415,9 @@
         bool terug = false;
         while (!terug) {
             mijnPuzzel.drukAf();
-            cout << "[T]erug, [V]olg, [O]plossen van 5x5 puzzel, [A]fspelen oplossing, [Z]et doen, a[F]sluiten" << endl;
+            cout << "[T]erug, [V]olg, [O]plossen van 5x5 puzzel, [A]f"
+                 << "spelen oplossing, [Z]et doen, a[F]sluiten" 
+                 << endl;
             keuze = cin.get();
             while (keuze == '\n') {
                 keuze = cin.get();
@@ -439,15 +441,25 @@
                     sluitAf(terug);
                     break;
                 case 'Z': case 'z': {
-                    cout << "Doe een zet doormiddel van schaaknotatie (i.e. [A1])." << endl;
+                    cout << "Doe een zet doormiddel van schaaknotatie"
+                         << " (i.e. [A1])." << endl;
                     string zet;
-                    char z[3];
-                    cin.get(z, 3);
-                    zet += z;
-                    cout << zet << endl;
-                    //mijnPuzzel.doeZet(zet);
+                    char z = cin.get();
+                    int n = 0;
+                    while (z == '\n') {
+                        z = cin.get();
+                    }
+                    while (z >= 'A' && z <= 'Z') {
+                        zet += z;
+                        z = cin.get();
+                    }
+                    while (z >= '0' && z <= '9' && n <= 20) {
+                        zet += z;
+                        n = n * 10 + (z - '0');
+                        z = cin.get();
+                    }
+                    mijnPuzzel.doeZet(zet);
                     break;
-                    //doe een zet
                 }
             }
         }
@@ -457,7 +469,8 @@
         Puzzel mijnPuzzel;
         char keuze;
         while (!afsluiten) {
-            cout << "[T]ekenen, p[U]zzelen, [P]arameters, a[F]sluiten" << endl;
+            cout << "[T]ekenen, p[U]zzelen, [P]arameters, a[F]sluiten"
+                 << endl;
             keuze = cin.get();
             while (keuze == '\n') {
                 keuze = cin.get();
