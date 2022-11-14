@@ -13,6 +13,35 @@
     #include <fstream>
     using namespace std;
     
+    bool afsluiten = false;
+    int leesGetal() {
+        int getal = 0;
+        char x = cin.get();
+        while (x == '\n') {
+            x = cin.get(); // naar volgende char bij \n
+        }
+        while (x < '0' || x > '9') {
+            x = cin.get(); // naar volgende char bij niet-getal
+        }
+        while (getal < 1000 && x > '0' && x < '9') {
+            getal = (getal * 10) + (x - '0');
+            x = cin.get();
+        }//checken of het niet boven de bovengrens komt vinden en
+         //returnen getal achtereenvolgende nummers
+        return getal;
+    }
+    // functie random getal
+    //  geeft random getal tussen 0 en 999
+    long randomgetal() {
+        static long getal = 42;
+        getal = (221 * getal + 1) % 1000;
+        return getal;
+    }// randomgetal
+    void sluitAf(bool & terug) {
+        terug = true;
+        afsluiten = true;
+    }
+
     //klasse aanmaken
     class Puzzel {
         private:
@@ -21,7 +50,6 @@
             int hoogte, breedte;
             char aan, uit;
             float percentage;
-            bool torus;
             int pen;
         public:
             Puzzel() {
@@ -29,20 +57,98 @@
                 breedte = 5;
                 aan = 'X';
                 uit = '.';
+                percentage = 50;
+                pen = 0;
                 maakSchoon();
             } // constructor
-            void vulRandom();
-            void zetParameters();
+            int pakPen() {
+                return pen;
+            }
             int pakHoogte() {
                 return hoogte;
             }
             int pakBreedte() {
                 return breedte;
             }
+            void zetParameters() {
+                bool terug = false;
+                cout << "U kunt hier uw eigen parameters kiezen:" 
+                     << endl;
+                char keuze;
+                while (!terug) {
+                    cout << "[T]erug, [B]reedte, [H]oogte, [P]ercentage, [A]an, [U]it, p[E]n, a[F]sluiten"
+                         << endl;
+                    
+                    keuze = cin.get();
+                    while (keuze == '\n') {
+                        keuze = cin.get();
+                    }
+                    switch(keuze) {
+                        case 'T': case 't':
+                            terug = true;
+                            break;
+                        case 'B': case 'b': {
+                            cout << "Voer een nieuwe breedte in (2-20)" << endl;
+                            int nieuweBreedte = leesGetal();
+                            if (nieuweBreedte <= 20 && nieuweBreedte >= 2) {
+                                breedte = nieuweBreedte;
+                            }
+                            break;
+                        }
+                        case 'H': case 'h': {
+                            cout << "Voer een nieuwe hoogte in (2-20)" << endl;
+                            int nieuweHoogte = leesGetal();
+                            if (nieuweHoogte <= 20 && nieuweHoogte >= 2) {
+                                hoogte = nieuweHoogte;
+                            }
+                            break;
+                        }
+                        case 'P': case 'p': {
+                            cout << "Voer in welk percentage u wilt gebruiken voor de random functie (0-100)" << endl;
+                            int nieuwePerc = leesGetal();
+                            if (nieuwePerc <= 100 && nieuwePerc >= 0) {
+                                percentage = nieuwePerc;
+                            }
+                            break;
+                        }
+                        case 'A': case 'a':
+                            aan = cin.get();
+                            break;
+                        case 'U': case 'u':
+                            uit = cin.get();
+                            break;
+                        case 'E': case 'e': {
+                            int nieuwePen = leesGetal();
+                            if (nieuwePen >= 0 && nieuwePen <= 2) {
+                                pen = nieuwePen;
+                            }
+                            break;
+                        }
+                        case 'F': case 'f':
+                            sluitAf(terug);
+                            break;
+                    }
+            //vraag en invoer fietsband-optie of gewoon speelveld
+            //een pen (0/1/2) 0: bij lopen blijven lampen gelijk 
+            //1: lopen doet lampen aan 2: lopen doet lampen uit
+                }
+            }
+            void vulRandom() {
+                maakSchoon();
+                for (int i = 0; i < hoogte; i++) {
+                    for (int j = 0; j < breedte; j++) {
+                        if (randomgetal() + 1 < percentage * 10) {
+                            dewereld[i][j] = true;
+                        }
+                    }
+                }
+            }
             void schakel(int i, int j) {
                 dewereld[i][j] = !dewereld[i][j];
             }
-
+            void teken(int i, int j, bool stat) {
+                dewereld[i][j] = stat;
+            }        
             void drukAf() {
                 for (int i = 0; i <= hoogte; i++) {
                     if (i != hoogte)
@@ -63,7 +169,6 @@
                 }
                 // for i
             }// functie drukaf
-
             void maakSchoon() {
                 for (int i = 0; i < hoogte; i++) {
                     for (int j = 0; j < breedte; j++) {
@@ -71,17 +176,16 @@
                     }
                 }
             }
-
-            void zetPercentage(int per) {
-                percentage = (float)per/100;
-            }
             bool doeZet(string zet) {
-                char letter = zet.begin();
+                char letter = zet[0];
                 zet.erase(0, 1);
-                int nummer = leesGetal(zet);
+                int nummer = 0;
+                while (zet.size() != 0) {
+                    nummer = nummer * 10 + (zet[0] - '0');
+                }
                 if ((letter >= 'A' && letter < 'A' + breedte) 
-                    && (nummer > '0' && nummer <= '0' + hoogte)) {
-                    int posi = ('0' + hoogte - nummer);
+                    && (nummer > 0 && nummer <= hoogte)) {
+                    int posi = (hoogte - nummer);
                     int posj = letter - 'A';
                     for (int i = -1; i <= 1; i++) {
                         for (int j = -1; j <= 1; j++) {
@@ -104,7 +208,6 @@
                     return false;
                 }
             }
-
             void volg() {
                 string verdeler(breedte*2+1, '-');
                 cout << verdeler << endl;
@@ -187,72 +290,6 @@
             // functie genereer
             // geen functie op ingevoerde getal uit te voeren
     };
-    
-    bool afsluiten = false;
-    
-    void sluitAf(bool & terug) {
-        terug = true;
-        afsluiten = true;
-    }
-    void Puzzel::zetParameters() {
-        bool terug = false;
-        cout << "U kunt hier uw eigen parameters kiezen:" 
-             << endl;
-        cout << "[T]erug, [B]reedte, [H]oogte, [P]ercentage, [A]an, [U]it, [T]orus, [P]en, a[F]sluiten"
-             << endl;
-        char keuze = cin.get()
-        while (!terug) {
-            switch(keuze) {
-                case 'T': case 't':
-                    terug = true;
-                    break;
-                case 'B': case 'b':
-                    Puzzel::breedte =
-                    break;
-                case 'H': case 'h':
-                    Puzzel::hoogte =
-                    break;
-                case 'P': case 'p':
-                    Puzzel::percentage =
-                    break;
-                case 'A': case 'a':
-                    Puzzel::aan =
-                    break;
-                case 'U': case 'u':
-                    Puzzel::uit =
-                    break;
-                case 'T': case 't':
-                    Puzzel::torus =
-                    break;
-                case 'P': case 'p':
-                    Puzzel::pen =
-                    break;
-                case 'F': case 'f':
-                    sluitAf(terug);
-                    break;
-            }
-    //vraag en invoer fietsband-optie of gewoon speelveld
-    //een pen (0/1/2) 0: bij lopen blijven lampen gelijk 
-    //1: lopen doet lampen aan 2: lopen doet lampen uit
-        }
-    }
-    // functie random getal
-    //  geeft random getal tussen 0 en 999
-    long randomgetal() {
-        static long getal = 42;
-        getal = (221 * getal + 1) % 1000;
-        return getal;
-    }// randomgetal
-    void Puzzel::vulRandom() {
-        maakSchoon();
-        for (int i = 0; i < hoogte; i++) {
-            for (int j = 0; j < breedte; j++) {
-                if (randomgetal() >= Puzzel::percentage) {
-                    dewereld[i][j] = true;
-                }
-            }
-        }
-    }
 
     void info() { 
         cout << "+---------------------------------------------------"
@@ -284,25 +321,6 @@
     // aantal gedane zetten en lampjes die aan zijn afdrukken naast speelveld
     
     // functie leesGetal
-    int getal = 0;
-    void leesGetal() {
-        char x = cin.get();
-        while (x == '\n') {
-            x = cin.get(); // naar volgende char bij \n
-        }
-        while (x < '0' || x > '9') {
-            x = cin.get(); // naar volgende char bij niet-getal
-        }
-        while (getal < 1000 && 0 > x && x < 9) { // checken of getal niet boven de bovengrens komt vinden en returnen getal achtereenvolgende nummers
-            getal = (getal * 10) + x;              // getal vormen
-            x = cin.get();
-        }
-        while (x > -1 && x < 10) {
-            x = x * 10;
-            getal = x;
-            x = cin.get();
-        }
-    }
 
     // submenu tekenen
     void tekenMenu(Puzzel & mijnPuzzel) { // moet ongetwijfeld geen 'int' zijn, maar welke functie wel?
@@ -317,6 +335,9 @@
             cout << "Uw cursor staat op: " << (char)('A' + cursorx) << mijnPuzzel.pakHoogte() - cursory
                  << endl;
             keuze = cin.get();
+            while (keuze == '\n') {
+                keuze = cin.get();
+            }
             switch (keuze) {
                 case 'T': case 't':
                     terug = true;
@@ -324,24 +345,48 @@
                 case 'W': case 'w':
                     if (mijnPuzzel.pakHoogte() - cursory < mijnPuzzel.pakHoogte()) {
                         cursory--;
+                        if (mijnPuzzel.pakPen() == 1) {
+                            mijnPuzzel.teken(cursory, cursorx, true);
+                        }
+                        else if (mijnPuzzel.pakPen() == 2) {
+                            mijnPuzzel.teken(cursory, cursorx, false);
+                        }
                     }
                     break;
                     //omhoog
                 case 'A': case 'a':
                     if (cursorx > 0) {
                         cursorx--;
+                        if (mijnPuzzel.pakPen() == 1) {
+                            mijnPuzzel.teken(cursory, cursorx, true);
+                        }
+                        else if (mijnPuzzel.pakPen() == 2) {
+                            mijnPuzzel.teken(cursory, cursorx, false);
+                        }
                     }
                     break;
                     //links
                 case 'S': case 's':
                     if (cursory < mijnPuzzel.pakHoogte() - 1) {
                         cursory++;
+                        if (mijnPuzzel.pakPen() == 1) {
+                            mijnPuzzel.teken(cursory, cursorx, true);
+                        }
+                        else if (mijnPuzzel.pakPen() == 2) {
+                            mijnPuzzel.teken(cursory, cursorx, false);
+                        }
                     }
                     break;
                     //omlaag
                 case 'D': case 'd':
                     if (cursorx < mijnPuzzel.pakBreedte() - 1) {
                         cursorx++;
+                        if (mijnPuzzel.pakPen() == 1) {
+                            mijnPuzzel.teken(cursory, cursorx, true);
+                        }
+                        else if (mijnPuzzel.pakPen()) {
+                            mijnPuzzel.teken(cursory, cursorx, false);
+                        }
                     }
                     break;
                     //rechts
@@ -366,13 +411,16 @@
     
     // submenu puzzelen
     void puzzelMenu(Puzzel & mijnPuzzel) {
-        char choice;
+        char keuze;
         bool terug = false;
         while (!terug) {
             mijnPuzzel.drukAf();
             cout << "[T]erug, [V]olg, [O]plossen van 5x5 puzzel, [A]fspelen oplossing, [Z]et doen, a[F]sluiten" << endl;
-            cin >> choice;
-            switch (choice) {
+            keuze = cin.get();
+            while (keuze == '\n') {
+                keuze = cin.get();
+            }
+            switch (keuze) {
                 case 'T': case 't':
                     terug = true;
                     break;
@@ -390,31 +438,31 @@
                 case 'F': case 'f':
                     sluitAf(terug);
                     break;
-                case 'Z': case 'z':
+                case 'Z': case 'z': {
                     cout << "Doe een zet doormiddel van schaaknotatie (i.e. [A1])." << endl;
-                    char z;
-                    bool gevonden = false;
-                    while (!gevonden) {
-                        string zet;
-                        while(zet.size() < 2) {
-                            cin >> z;
-                            zet += z;
-                        }
-                        gevonden = mijnPuzzel.doeZet(zet);
-                    }
+                    string zet;
+                    char z[3];
+                    cin.get(z, 3);
+                    zet += z;
+                    cout << zet << endl;
+                    //mijnPuzzel.doeZet(zet);
                     break;
                     //doe een zet
+                }
             }
         }
     }
 
     void menu() {
         Puzzel mijnPuzzel;
-        char choice;
+        char keuze;
         while (!afsluiten) {
             cout << "[T]ekenen, p[U]zzelen, [P]arameters, a[F]sluiten" << endl;
-            cin >> choice;
-            switch (choice) {
+            keuze = cin.get();
+            while (keuze == '\n') {
+                keuze = cin.get();
+            }
+            switch (keuze) {
                 case 'T': case 't':
                     tekenMenu(mijnPuzzel);
                     break;
