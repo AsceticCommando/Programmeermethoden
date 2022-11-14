@@ -32,7 +32,7 @@
     }//functie random getal
      //geeft random getal tussen 0 en 999
     long randomgetal() {
-        static long getal = 42;
+        static long getal = 43;
         getal = (221 * getal + 1) % 1000;
         return getal;
     }// randomgetal
@@ -158,12 +158,11 @@
                 int y;
                 int x;
                 for (int n = 0; n < getal; n++) {
-                    y = (randomgetal() + n) % hoogte;
-                    x = (randomgetal() + n) % breedte;
+                    y = (randomgetal()) % hoogte;
+                    x = ((randomgetal() + 1) * 227) % breedte;
                     string zet;
                     zet += 'A' + x;
                     zet += '0' + (hoogte - y);
-                    cout << zet << endl;
                     doeZet(zet);
                 }
             }//functie genereer
@@ -315,16 +314,17 @@
              << "| Studierichting:    Biologie           Wiskunde    "
              << "   |" << endl << "+---------------------------------"
              << "---------------------+" << endl << endl << "Goedenda"
-             << "g; u heeft een programma opgestart dat zowel voor co" 
-             << "deren als voor decoderen kan worden"
-             << " gebruikt." << endl << "Zo"
-             << " zal ik u wat vragen stellen om helder te krijgen "
-             << "wat u van mij verwacht" << endl << "Wat u van mij ku"
-             << "nt verwachten?" << endl << "Ik zal coderen, decodere"
-             << "n, verloren pincodes terugzoeken en u Lachrel-gerela"
-             << "teerde informatie verschaffen omtrent getallen die i"
-             << "n ene te coderen bestand voorkomen." << endl << "Wel"
-             << "kom!" << endl << endl;
+             << "g; Welkom bij het spel Lights-Out." << endl 
+             << "Hierbij is het de bedoeling alle lichten uit te krij"
+             << "gen." << endl << "Je kan een licht knop omschakelen"
+             << " door er op te 'drukken'. Alle lichten daaromheen ga"
+             << "an echter dan weer uit." << endl << "Al om al een ui"
+             << "tdaging voor menig man die het proberen zal." << endl
+             << "Dit programma bevat ook een tekenmenu, zodat de gebr"
+             << "uiker zijn eigen uitdagingen kan maken." << endl
+             << "Er zijn ook behulpzame macros om repetetieve handeli"
+             << "ngen te voorkomen." << endl << "Welkom! En veel spee"
+             << "l plezier!" << endl << endl;
     }//functie leesGetal
 
     //submenu tekenen
@@ -507,6 +507,7 @@
     }
 
     int main() {
+        info();
         menu();
         return 0;
     }
