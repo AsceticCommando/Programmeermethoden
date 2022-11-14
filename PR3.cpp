@@ -23,7 +23,7 @@
         while (x < '0' || x > '9') {
             x = cin.get(); // naar volgende char bij niet-getal
         }
-        while (getal < 1000 && x > '0' && x < '9') {
+        while (getal < 1000 && x >= '0' && x <= '9') {
             getal = (getal * 10) + (x - '0');
             x = cin.get();
         }//checken of het niet boven de bovengrens komt vinden en
@@ -45,8 +45,8 @@
     //klasse aanmaken
     class Puzzel {
         private:
-            bool dewereld[20][20];  // daadwerkelijke MAX ipv 'MAX'; is de bedoeling toch?
-            bool oplossing[20][20]; // daadwerkelijke MAX ipv 'MAX'; in de bedoeling toch?
+            bool dewereld[20][20];
+            bool oplossing[20][20];
             int hoogte, breedte;
             char aan, uit;
             float percentage;
@@ -91,7 +91,8 @@
                             cout << "Voer een nieuwe breedte in"
                                  << " (2-20)" << endl;
                             int nieuweBreedte = leesGetal();
-                            if (nieuweBreedte <= 20 && nieuweBreedte >= 2) {
+                            if (nieuweBreedte <= 20 
+                                && nieuweBreedte >= 2) {
                                 breedte = nieuweBreedte;
                             }
                             break;
@@ -100,7 +101,8 @@
                             cout << "Voer een nieuwe hoogte in (2-20)"
                                  << endl;
                             int nieuweHoogte = leesGetal();
-                            if (nieuweHoogte <= 20 && nieuweHoogte >= 2) {
+                            if (nieuweHoogte <= 20 
+                                && nieuweHoogte >= 2) {
                                 hoogte = nieuweHoogte;
                             }
                             break;
@@ -133,7 +135,7 @@
                             sluitAf(terug);
                             break;
                     }
-            //vraag en invoer fietsband-optie of gewoon speelveld
+            //vraag en invoer fietsband-optie of gewoon speelveld WIP
             //een pen (0/1/2) 0: bij lopen blijven lampen gelijk 
             //1: lopen doet lampen aan 2: lopen doet lampen uit
                 }
@@ -147,15 +149,30 @@
                         }
                     }
                 }
-            }// functie random
-             // speelveld wordt random gevult door willekeurige lampen 
+            }//functie random
+             //speelveld wordt random gevult door willekeurige lampen 
              //aan en uit te doen; hoeft geen oplosbare puzzel op 
              //te leveren
+            void genereer(int getal) {
+                maakSchoon();
+                int y;
+                int x;
+                for (int n = 0; n < getal; n++) {
+                    y = (randomgetal() + n) % hoogte;
+                    x = (randomgetal() + n) % breedte;
+                    string zet;
+                    zet += 'A' + x;
+                    zet += '0' + (hoogte - y);
+                    cout << zet << endl;
+                    doeZet(zet);
+                }
+            }//functie genereer
+             //geen functie op ingevoerde getal uit te voeren
             void schakel(int i, int j) {
                 dewereld[i][j] = !dewereld[i][j];
-            }// functie toggle
-             // laat aan lampje uit, en uit lampje aan gaan
-             // is geen zet!! enkel het lampje zelf reageerd
+            }//functie toggle
+             //laat aan lampje uit, en uit lampje aan gaan
+             //is geen zet!! enkel het lampje zelf reageerd
             void teken(int i, int j, bool stat) {
                 dewereld[i][j] = stat;
             }//alternatieve functie voor aan- en uitzetten lampje        
@@ -284,9 +301,6 @@
                 }
             }// functie oplossen
              // lost 5x5 functie op
-            
-            // functie genereer
-            // geen functie op ingevoerde getal uit te voeren
     };
 
     void info() { 
@@ -311,15 +325,9 @@
              << "teerde informatie verschaffen omtrent getallen die i"
              << "n ene te coderen bestand voorkomen." << endl << "Wel"
              << "kom!" << endl << endl;
-    }
+    }//functie leesGetal
 
-    
-    // aantal gedane zetten en lampjes die aan zijn afdrukken naast 
-    //speelveld
-    
-    // functie leesGetal
-
-    // submenu tekenen
+    //submenu tekenen
     void tekenMenu(Puzzel & mijnPuzzel) {
         char keuze;
         int cursorx = 0;
@@ -399,9 +407,13 @@
                 case 'O': case 'o':
                     mijnPuzzel.schakel(cursory, cursorx);
                     break;
-                case 'G': case 'g':
-                    cout << "genereer" << endl;
+                case 'G': case 'g': {
+                    cout << "Kies een moeilijkheidsgraad [getal]" 
+                         << endl;
+                    int moeilijkheidsgraad = leesGetal();
+                    mijnPuzzel.genereer(moeilijkheidsgraad);
                     break;
+                }
                 case 'F': case 'f':
                     sluitAf(terug);
                     break;
@@ -435,6 +447,8 @@
                     break;
                     //los op
                 case 'A': case 'a':
+                    cout << "Deze functie is helaas nog een WIP" 
+                         << endl;
                     break;
                     //los op en laat zien
                 case 'F': case 'f':
