@@ -7,20 +7,19 @@
     //Jaar van aankomst:                   2019;                  2022
     //Studierichting:                  Biologie;              Wiskunde
     //Gebruikte IDE:         Visual Studio Code;          Sublime Text
-    
-    #include<othellobord.h>
+    #include<iostream>
+    #include "othellobord.h"
+    using namespace std;
 
-    void zetervoor (char letter, vakje* & ingang) {
-        vakje *p;
-        p = new vakje;
-        p -> info = letter;
-        p -> volgende = ingang;
-        ingang = p; // en niet 'p' deleten
-    }//zetervoor
+    othellobord::othellobord() {
+        bordvakje* ingang = nullptr;
+        bordvakje* uitgang = nullptr;
+    }
 
-    void laatsteVakje() {
-        vakje* ingang;
-        ingang = new vakje;
-        ingang -> info = '.';
-        ingang -> volgende = nullptr;
-    }//basisstructuur, pointer
+    othellobord::~othellobord() {
+
+    }
+
+    void othellobord::drukaf() {
+
+    }

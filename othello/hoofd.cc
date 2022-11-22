@@ -8,13 +8,12 @@
     //Studierichting:                  Biologie;              Wiskunde
     //Gebruikte IDE:         Visual Studio Code;          Sublime Text
     
-    #include<iostream>
+    #include <iostream>
+    #include <othellobord.h>
     using namespace std;
-    
-    void hoofdMenu() {
-
-    }
 
     int main() {
-        hoofdMenu();
+        othellobord Othellobord;
+        Othellobord.drukaf();
+        return 0;
     }

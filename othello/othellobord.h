@@ -8,13 +8,20 @@
     //Studierichting:                  Biologie;              Wiskunde
     //Gebruikte IDE:         Visual Studio Code;          Sublime Text
 
-    class Othello {
-        private:
-        
-    };
-
-    class vakje {
+    class bordvakje {
         public:
-            char info;
-            vakje* volgende; //Recursief? Ja/Nee?
+            char kleur;
+            bordvakje* buren[8];
+            bordvakje();
     };//vakje
+
+    class othellobord {
+        private:
+            bordvakje* ingang;
+            int hoogte;
+            int breedte;
+        public:
+            othellobord();
+            ~othellobord();
+            void drukaf();
+    };
