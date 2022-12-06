@@ -10,18 +10,16 @@
 
     class bordvakje {
         public:
-            char kleur;
-            bordvakje* buren[8];
-            bordvakje();
+            char kleur;                                        //7 0 1
+            bordvakje* buren[8];                               //6   2
+            bordvakje();                                       //5 4 3
     };//vakje
 
-    class othellobord {
+    class bord {
         private:
             bordvakje* ingang;
-            int hoogte;
-            int breedte;
         public:
-            othellobord();
-            ~othellobord();
+            bord();
+            ~bord();
             void drukaf();
     };

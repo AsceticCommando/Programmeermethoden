@@ -11,15 +11,14 @@
     #include "othellobord.h"
     using namespace std;
 
-    othellobord::othellobord() {
-        bordvakje* ingang = nullptr;
-        bordvakje* uitgang = nullptr;
+    bord::othellobord() {
+        
     }
 
-    othellobord::~othellobord() {
+    bord::~othellobord() {
 
     }
 
-    void othellobord::drukaf() {
+    void bord::drukaf() {
 
     }

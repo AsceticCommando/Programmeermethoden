@@ -13,7 +13,7 @@
     using namespace std;
 
     int main() {
-        othellobord Othellobord;
+        bord Othellobord;
         Othellobord.drukaf();
         return 0;
     }
