@@ -11,14 +11,17 @@
     #include "othellobord.h"
     using namespace std;
 
-    bord::othellobord() {
+    bord::bord(int x, int y) {
+        hoogte = x;
+        breedte = y;
+    }
+
+    bord::~bord() {
         
     }
-
-    bord::~othellobord() {
-
+    void bord::maakRij() {
+        for (int i = 0; i < this->hoogte; i++) {}
     }
-
-    void bord::drukaf() {
+    void bord::afdrukken() {
 
     }

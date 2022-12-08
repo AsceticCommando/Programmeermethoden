@@ -18,8 +18,14 @@
     class bord {
         private:
             bordvakje* ingang;
+            int hoogte;
+            int breedte;
         public:
             bord();
             ~bord();
-            void drukaf();
+            void maakRij();
+            void maakBord();
+            void breien();
+            void vulBord();
+            void drukAf(); 
     };
