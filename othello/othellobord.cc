@@ -20,7 +20,14 @@
         
     }
     void bord::maakRij() {
-        for (int i = 0; i < this->hoogte; i++) {}
+        bordvakje* hulp = nullptr;
+        bordvakje* p;
+        for (int i = 0; i < hoogte; i++) {
+            p = new bordvakje;
+            p->kleur = '-';
+            p->buren[2] = hulp;
+            hulp = p;
+        }
     }
     void bord::afdrukken() {
 
