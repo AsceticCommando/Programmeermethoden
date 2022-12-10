@@ -1,0 +1,10 @@
+{
+	"C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
+	"makefile.launchConfigurations": [
+		{
+			"cwd": "c:\\Users\\Thijs Vijgeboom\\OneDrive\\Documenten 1\\C++\\GitHub\\Programmeermethoden\\othello",
+			"binaryPath": "c:\\Users\\Thijs Vijgeboom\\OneDrive\\Documenten 1\\C++\\GitHub\\Programmeermethoden\\othello\\hetspel",
+			"binaryArgs": []
+		}
+	]
+}
