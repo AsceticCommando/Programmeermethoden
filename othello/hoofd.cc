@@ -15,10 +15,10 @@
 
     int main() {
         int breedte = 8;
-		int hoogte = 8;
+        int hoogte = 8;
         bordvakje* wijzer;
-        bord Othellobord;
-        Othellobord.maakBord(wijzer, hoogte, breedte);
+        bord Othellobord(breedte, hoogte);
+        Othellobord.maakBord(wijzer);
         Othellobord.afdrukken(wijzer);
         return 0;
     }

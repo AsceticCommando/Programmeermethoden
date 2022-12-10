@@ -18,11 +18,13 @@
     class bord {
         private:
             bordvakje* wijzer;
+            int breedte;
+            int hoogte;
         public:
-            bord();
+            bord(int x, int y);
             ~bord();
-            void maakRij(bordvakje* & wijzer, int breedte);
-            void maakBord(bordvakje* & wijzer, int breedte, int hoogte);
+            void maakRij(bordvakje* & wijzer);
+            void maakBord(bordvakje* & wijzer);
             void breien(bordvakje* & wijzer);
             void vulBord();
             void afdrukken(bordvakje* wijzer); 
