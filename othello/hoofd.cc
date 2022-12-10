@@ -9,11 +9,13 @@
     //Gebruikte IDE:         Visual Studio Code;          Sublime Text
     
     #include <iostream>
-    #include <othellobord.h>
+    #include "othellobord.h"
     using namespace std;
 
     int main() {
-        bord Othellobord;
-        Othellobord.drukaf();
+        int breedte = 8;
+        int hoogte = 8;
+        bordvakje* wijzer;
+        bord Othellobord = new bord();
         return 0;
     }

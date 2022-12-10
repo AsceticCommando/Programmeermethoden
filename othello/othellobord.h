@@ -17,15 +17,15 @@
 
     class bord {
         private:
-            bordvakje* ingang;
+            bordvakje* wijzer;
             int hoogte;
             int breedte;
         public:
             bord();
             ~bord();
-            void maakRij();
+            void maakRij(bordvakje* & wijzer, int breedte);
             void maakBord();
             void breien();
             void vulBord();
-            void drukAf(); 
+            void afdrukken(bordvakje* wijzer); 
     };
