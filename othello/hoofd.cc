@@ -19,6 +19,7 @@
         bordvakje* wijzer;
         bord Othellobord(breedte, hoogte);
         Othellobord.maakBord(wijzer);
+        Othellobord.breien(wijzer);
         Othellobord.afdrukken(wijzer);
         return 0;
     }
