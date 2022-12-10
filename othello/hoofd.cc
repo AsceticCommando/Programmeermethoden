@@ -12,10 +12,13 @@
     #include "othellobord.h"
     using namespace std;
 
+
     int main() {
         int breedte = 8;
-        int hoogte = 8;
+		int hoogte = 8;
         bordvakje* wijzer;
-        bord Othellobord = new bord();
+        bord Othellobord;
+        Othellobord.maakBord(wijzer, hoogte, breedte);
+        Othellobord.afdrukken(wijzer);
         return 0;
     }

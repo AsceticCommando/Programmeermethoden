@@ -11,6 +11,10 @@
     #include "othellobord.h"
     using namespace std;
 
+    bordvakje::bordvakje() {
+        
+    }
+
     bord::bord() {
 
     }
@@ -18,27 +22,51 @@
     bord::~bord() {
         
     }
+    
+    void bord::breien(bordvakje* & wijzer) {
+        bordvakje* kolom;
+		bordvakje* rij;
+		kolom = wijzer;
+		rij = wijzer;
+	}
+
     void bord::maakRij(bordvakje* & wijzer, int breedte) {
         bordvakje* vorige;
         vorige = nullptr;
         bordvakje* huidige;
-        huidige = new bordvakje;
-        wijzer = huidige;
+        huidige = wijzer;
         bordvakje* volgende;
         for (int i = 0; i < breedte; i++) {
             huidige->kleur = '-';
-            huidige->buren[2] = vorige;
+            huidige->buren[6] = vorige;
             if (i != breedte-1) volgende = new bordvakje;
             else volgende = nullptr;
-            huidige->buren[6] = volgende;
+            huidige->buren[2] = volgende;
             vorige = huidige;
             huidige = volgende;
         }
     }
+
+	void bord::maakBord(bordvakje* & wijzer, int breedte, int hoogte) {
+        bordvakje* vorige = nullptr;
+		bordvakje* huidige;
+		huidige = new bordvakje;
+		wijzer = huidige;
+		bordvakje* volgende;
+		for(int i = 0; i < hoogte; i++) {
+            maakRij(huidige, breedte);
+			huidige->buren[0] = vorige;
+			if(i != hoogte-1) volgende = new bordvakje;
+			else volgende = nullptr;
+			huidige->buren[4] = volgende;
+			vorige = huidige;
+			huidige = volgende;
+		}
+	}
     void bord::afdrukken(bordvakje* wijzer) {
         bordvakje* hulp = wijzer;
         while (hulp != nullptr) {
             cout << hulp->kleur << " ";
-            hulp = hulp->buren[2]
+            hulp = hulp->buren[2];
         }
     }
