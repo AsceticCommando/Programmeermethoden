@@ -12,9 +12,10 @@
     #include "othellobord.h"
     using namespace std;
 
-    bordvakje::bordvakje() {
-        
-    }
+	bord::bord() {
+		breedte = 8;
+		hoogte = 8;
+	}
 
     bord::bord(int x, int y) {
         breedte = x;
@@ -72,14 +73,13 @@
         }
     }
 
-    void bord::maakRij(bordvakje* & wijzer) {
+    void bord::maakRij(bordvakje* & ingang) {
         bordvakje* vorige;
         vorige = nullptr;
         bordvakje* huidige;
-        huidige = wijzer;
+        huidige = ingang;
         bordvakje* volgende;
         for (int i = 0; i < breedte; i++) {
-            huidige->kleur = '-';
             huidige->buren[6] = vorige;
             if (i != breedte-1) volgende = new bordvakje;
             else volgende = nullptr;
@@ -87,6 +87,27 @@
             vorige = huidige;
             huidige = volgende;
         }
+    }
+
+    void bord::vulBord(bordvakje* & wijzer) {
+        bordvakje* zetRij;
+		bordvakje* zetKolom;
+        zetRij = wijzer;
+		zetKolom = wijzer;
+        for (int i = 0; i < hoogte; i++) {
+			for (int j = 0; j < breedte; j++) {
+				if ((i == hoogte/2 - 1 && j == breedte/2 - 1) 
+				   || (i == hoogte/2 && j == breedte/2))
+				    zetKolom->kleur = 'W';
+				else if ((i == hoogte/2 - 1 && j == breedte/2) 
+				   || (i == hoogte/2 && j == breedte/2 - 1))
+				    zetKolom->kleur = 'Z';
+				else zetKolom->kleur = '-';
+				zetKolom = zetKolom->buren[2];
+			}
+			zetRij = zetRij->buren[4];
+			zetKolom = zetRij;
+		}
     }
 
     void bord::maakBord(bordvakje* & wijzer) {
@@ -128,4 +149,5 @@
             ycoord++;
             rij = rij->buren[4];
         }
+		//cout << wijzer << endl;
     }

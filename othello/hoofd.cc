@@ -12,14 +12,32 @@
     #include "othellobord.h"
     using namespace std;
 
+    void Menu(bord* & Othellobord, bool & exit) {
+        bordvakje* wijzer;
+        int breedte;
+        int hoogte;
+        char menu;
+        while (!exit) {
+            cin >> menu;
+            switch (menu) {
+                case 'B': case 'b':
+                    Othellobord = new bord(breedte, hoogte);
+                    Othellobord->maakBord(wijzer);
+                    Othellobord->breien(wijzer);
+                    Othellobord->vulBord(wijzer);
+                    Othellobord->afdrukken(wijzer);
+                    break;
+                case 'X': case 'x':
+                    exit = 1;
+                default:
+                    break;
+            }	
+        }
+    }
 
     int main() {
-        int breedte = 8;
-        int hoogte = 8;
-        bordvakje* wijzer;
-        bord Othellobord(breedte, hoogte);
-        Othellobord.maakBord(wijzer);
-        Othellobord.breien(wijzer);
-        Othellobord.afdrukken(wijzer);
+        bord* wijzer;
+        bool exit = false;
+        Menu(wijzer, exit);
         return 0;
     }
