@@ -9,23 +9,25 @@
     //Gebruikte IDE:         Visual Studio Code;          Sublime Text
 
     class bordvakje {
-        public:
-            char kleur;                                        //7 0 1
-            bordvakje* buren[8];                               //6   2
-            bordvakje();                                       //5 4 3
+        public:		                                       	   //7 0 1
+            char kleur;                                        //6   2
+            bordvakje* buren[8];                               //5 4 3
     };//vakje
 
     class bord {
         private:
-            bordvakje* wijzer;
+			bord* vorigebeurt;
+            bordvakje* huidigestand;
+			bord* volgendebeurt;
             int breedte;
             int hoogte;
         public:
+            bord();
             bord(int x, int y);
             ~bord();
-            void maakRij(bordvakje* & wijzer);
+            void maakRij(bordvakje* & ingang);
             void maakBord(bordvakje* & wijzer);
             void breien(bordvakje* & wijzer);
-            void vulBord();
-            void afdrukken(bordvakje* wijzer); 
+            void vulBord(bordvakje* & wijzer);
+            void afdrukken(bordvakje* wijzer);
     };
