@@ -17,14 +17,14 @@
         hoogte = 8;
 		spelerTracker = 1;
 		speler = 'Z';
-    }
+    }//constructor voor bord indien niks ingevoerd WIP
 
     bord::bord(int x, int y) {
         breedte = x;
         hoogte = y;
 		spelerTracker = 1;
 		speler = 'Z';
-    }
+    }//Constructor voor het bord.
 
     bord::~bord() {
 		bordvakje* schoonmaker;
@@ -38,19 +38,18 @@
 			}
 			else {
 				index = (index + 2) % 8;
-				cout << "Andere kant op.";
 			}
 		}
-	}
+	}//Opgeruimt staat netjes
 
     char bord::geefSpeler() {
 		return speler;
-	}
+	}//Toegang tot de speler variabele
 
     void bord::maakRij(bordvakje* & ingang) {
-        bordvakje* vorige;
-        vorige = nullptr;
-        bordvakje* huidige;
+        bordvakje* vorige;          //buren[6] <- [0] -> buren[2]
+        vorige = nullptr;           //1. vorige <- huidige -> volgende    
+        bordvakje* huidige;         //2. huidige <- volgende -> new
         huidige = ingang;
         bordvakje* volgende;
         for (int i = 0; i < breedte; i++) {
@@ -61,7 +60,7 @@
             vorige = huidige;
             huidige = volgende;
         }
-    }
+    }//Creëert een rij aan pointers mbv dubbelverbonden pointers
 
 	void bord::maakBord(bordvakje* & wijzer) {
         bordvakje* vorige = nullptr;
@@ -78,7 +77,12 @@
             vorige = huidige;
             huidige = volgende;
         }
-    }
+    }//Maakt het hele bord soortgelijk aan de maakRij functie
+	 //pointers hebben hier de volgende structuur (4x4)
+	 //|- - - -
+	 //|- - - -
+	 //|- - - -
+	 //|- - - -
 
 	void bord::breien(bordvakje* & wijzer) {
         bordvakje* rij1;
@@ -97,7 +101,7 @@
             rij1 = rij2;
             if (rij2->buren[4] != nullptr) rij2 = rij2->buren[4];
             else rij2 = nullptr;
-        }//Verticaal verbinden van overige vakken
+        }//Verticaal verbinden van nog niet verbonden vakken
         bordvakje* rij = wijzer;
         bordvakje* kolom;
         bordvakje* middelste;
@@ -125,7 +129,12 @@
             }
             rij = rij->buren[4];
         }
-    }
+    }//Pointers zijn nu diagonaal, verticaal en horizontaal aan elkaar
+	 //verbonden. (4x4)
+	 //|x|x|x|x|
+	 //|x|x|x|x|
+	 //|x|x|x|x|
+	 //|x|x|x|x|
 
     void bord::vulBord(bordvakje* & wijzer) {
         bordvakje* zetRij;
@@ -146,9 +155,13 @@
             zetRij = zetRij->buren[4];
             zetKolom = zetRij;
         }
-    }
+    }//Zet alle vakjes volgens de juiste stelling (4x4)
+	 //- - - -
+	 //- W Z -
+	 //- Z W -
+	 //- - - -
     
-    bool bord::burenCheck(bordvakje* & wijzer) {
+    void bord::burenCheck(bordvakje* & wijzer) {
 		bordvakje* zet = wijzer;
 		bool zetGevonden = false;
 		for (int i = 0; i < 8; i++) {
@@ -174,14 +187,19 @@
 		}
 		if (zetGevonden) {
 			spelerTracker = !spelerTracker;
-		}
-		return zetGevonden;
+		}//Zet de speler om
+		else {
+			cout << "Deze zet is niet mogelijk, een geldige zet sluit"
+			     << " stenen van de tegenstander in aan tenminste twe"
+				 << "e tegenover liggende zijden." << endl;
+		}//Waarschuwt tegen ongeldige zet.
 		//else if (computer != speler) {
 		//	cout << "Deze zet is niet mogelijk, een geldige zet sluit"
 		//	     << " stenen van de tegenstander in aan tenminste twe"
 		//		 << "e tegenover liggende zijden." << endl;
 		//}
-	}
+	}//Kijkt de zet na en zet de kleuren om, na het maken van een
+	 //Juiste zet krijgt de andere speler de beurt
 
 	void bord::geefBeurt() {
 		if (spelerTracker) {
@@ -190,7 +208,7 @@
         else {
             speler = 'W';
         }
-	}
+	}//Veranderen van speler karakter
 
     void bord::doeZet(bordvakje* & wijzer, string zet) {
         bordvakje* z = wijzer;
@@ -224,7 +242,7 @@
             }
             burenCheck(z);
         }
-    }
+    }//Zet karakters om naar zetbare structuur en validatie
 
     //void bord::kopieer(stapel* & opslag, bordvakje* wijzer) {
     //    opslag->huidige = new bord(breedte, hoogte);
@@ -278,7 +296,7 @@
             rij = rij->buren[4];
         }
         cout << endl;
-    }
+    }//Drukt alle pointers in het bord af
 
 	void bord::winnaar(bordvakje* wijzer) {
 		float score;
@@ -298,27 +316,28 @@
 			rij = rij->buren[4];
 		}
 		if (wit > zwart) {
-			score = (float) wit/totaal;
+			score = ((float) wit/totaal) * 100;
             cout << "Wit wint met een score van: " << score << "%";
 		}
 		else if (zwart > wit) {
-			score = (float) zwart/totaal;
+			score = ((float) zwart/totaal) * 100;
             cout << "Zwart wint met een score van: " << score << "%";
 		}
-	}
-
-	bool bord::gameOver(bordvakje* wijzer) {
-		bordvakje* rij = wijzer;
-		bordvakje* kolom;
-		while (rij != nullptr) {
-			kolom = rij;
-			while (kolom != nullptr) {
-				if (burenCheck(kolom)) {
-                    return false;
-				}
-				kolom = kolom->buren[2];
-			}
-			rij = rij->buren[4];
+		else {
+			cout << "Het is gelijk spel!";
 		}
-		return true;
-	}
+	}//Telt de scores en geeft aan welke speler gewonnen heeft in 
+	 //de huidige stand
+
+	//bool bord::gameOver(bordvakje* wijzer) {
+	//	bordvakje* rij = wijzer;
+	//	bordvakje* kolom;
+	//	while (rij != nullptr) {
+	//		kolom = rij;
+	//		while (kolom != nullptr) {
+	//			kolom = kolom->buren[2];
+	//		}
+	//		rij = rij->buren[4];
+	//	}
+	//	return true;
+	//}

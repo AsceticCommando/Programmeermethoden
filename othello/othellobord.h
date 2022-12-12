@@ -25,10 +25,10 @@
 
     class bord {
         private:
-		    char computer;
-		    char speler;
-		    bool spelerTracker;
-            int breedte;
+		    //char computer;
+		    char speler;            //Houdt karakter van de speler bij
+		    bool spelerTracker;     //Houdt bij wie er aan de beurt is
+            int breedte;            //via bool 1 = Z, 0 = W
             int hoogte;
         public:
 			bordvakje* huidigestand;
@@ -36,15 +36,16 @@
             bord(int x, int y);
             ~bord();
 			char geefSpeler();
+			//void computerZet();
 			void geefBeurt();
             void maakRij(bordvakje* & ingang);
             void maakBord(bordvakje* & wijzer);
             void breien(bordvakje* & wijzer);
             void vulBord(bordvakje* & wijzer);
-			bool burenCheck(bordvakje* & wijzer);
+			void burenCheck(bordvakje* & wijzer);
 			void doeZet(bordvakje* & wijzer, std::string zet);
 			//void kopieer(stapel* & opslag, bordvakje* wijzer);
 			void afdrukken(bordvakje* wijzer);
-			bool gameOver(bordvakje* wijzer);
+			//bool gameOver(bordvakje* wijzer);
 			void winnaar(bordvakje* wijzer);
     };
