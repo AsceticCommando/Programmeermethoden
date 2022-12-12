@@ -16,8 +16,9 @@
 
     class bord {
         private:
+		    bool spelerTracker = 1;
+			bordvakje huidigestand;
 			bord* vorigebeurt;
-            bordvakje* huidigestand;
 			bord* volgendebeurt;
             int breedte;
             int hoogte;
@@ -30,4 +31,5 @@
             void breien(bordvakje* & wijzer);
             void vulBord(bordvakje* & wijzer);
             void afdrukken(bordvakje* wijzer);
+			void doeZet(bordvakje* & wijzer, string zet);
     };

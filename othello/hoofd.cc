@@ -9,35 +9,43 @@
     //Gebruikte IDE:         Visual Studio Code;          Sublime Text
     
     #include <iostream>
+	#include <string>
     #include "othellobord.h"
     using namespace std;
 
-    void Menu(bord* & Othellobord, bool & exit) {
+    void Menu(bord & Othellobord, bool & exit) {
         bordvakje* wijzer;
         int breedte;
         int hoogte;
         char menu;
+		string zet;
         while (!exit) {
             cin >> menu;
             switch (menu) {
                 case 'B': case 'b':
-                    Othellobord = new bord(breedte, hoogte);
-                    Othellobord->maakBord(wijzer);
-                    Othellobord->breien(wijzer);
-                    Othellobord->vulBord(wijzer);
-                    Othellobord->afdrukken(wijzer);
+                    Othellobord.maakBord(wijzer);
+                    Othellobord.breien(wijzer);
+                    Othellobord.vulBord(wijzer);
+                    Othellobord.afdrukken(wijzer);
                     break;
                 case 'X': case 'x':
                     exit = 1;
+					break;
+				case 'Z': case 'z': {
+					cin >> zet;
+				    Othellobord.doeZet(wijzer, zet);
+					Othellobord.afdrukken(wijzer);
+					break;
                 default:
                     break;
+				}
             }	
         }
     }
 
     int main() {
-        bord* wijzer;
+        bord Othellobord(8, 8);
         bool exit = false;
-        Menu(wijzer, exit);
+        Menu(Othellobord, exit);
         return 0;
     }

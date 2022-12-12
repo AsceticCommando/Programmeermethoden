@@ -6,5 +6,8 @@
 			"binaryPath": "c:\\Users\\Thijs Vijgeboom\\OneDrive\\Documenten 1\\C++\\GitHub\\Programmeermethoden\\othello\\hetspel",
 			"binaryArgs": []
 		}
-	]
+	],
+	"files.associations": {
+		"ostream": "cpp"
+	}
 }

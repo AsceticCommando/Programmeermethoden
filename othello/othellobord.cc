@@ -12,10 +12,10 @@
     #include "othellobord.h"
     using namespace std;
 
-	bord::bord() {
-		breedte = 8;
-		hoogte = 8;
-	}
+    bord::bord() {
+        breedte = 8;
+        hoogte = 8;
+    }
 
     bord::bord(int x, int y) {
         breedte = x;
@@ -91,23 +91,23 @@
 
     void bord::vulBord(bordvakje* & wijzer) {
         bordvakje* zetRij;
-		bordvakje* zetKolom;
+        bordvakje* zetKolom;
         zetRij = wijzer;
-		zetKolom = wijzer;
+        zetKolom = wijzer;
         for (int i = 0; i < hoogte; i++) {
-			for (int j = 0; j < breedte; j++) {
-				if ((i == hoogte/2 - 1 && j == breedte/2 - 1) 
-				   || (i == hoogte/2 && j == breedte/2))
-				    zetKolom->kleur = 'W';
-				else if ((i == hoogte/2 - 1 && j == breedte/2) 
-				   || (i == hoogte/2 && j == breedte/2 - 1))
-				    zetKolom->kleur = 'Z';
-				else zetKolom->kleur = '-';
-				zetKolom = zetKolom->buren[2];
-			}
-			zetRij = zetRij->buren[4];
-			zetKolom = zetRij;
-		}
+            for (int j = 0; j < breedte; j++) {
+                if ((i == hoogte/2 - 1 && j == breedte/2 - 1) 
+                   || (i == hoogte/2 && j == breedte/2))
+                    zetKolom->kleur = 'W';
+                else if ((i == hoogte/2 - 1 && j == breedte/2) 
+                   || (i == hoogte/2 && j == breedte/2 - 1))
+                    zetKolom->kleur = 'Z';
+                else zetKolom->kleur = '-';
+                zetKolom = zetKolom->buren[2];
+            }
+            zetRij = zetRij->buren[4];
+            zetKolom = zetRij;
+        }
     }
 
     void bord::maakBord(bordvakje* & wijzer) {
@@ -124,6 +124,44 @@
             huidige->buren[4] = volgende;
             vorige = huidige;
             huidige = volgende;
+        }
+    }
+    
+    void bord::doeZet(bordvakje* & wijzer, string zet) {
+        bordvakje* z = wijzer;
+        char speler;
+        int rijZet;
+        int kolomZet;
+        if (zet.length() != 2 
+           || !(zet.at(0) >= 'A' && zet.at(0) < 'A' + breedte) 
+           || !(zet.at(0) >= 'a' && zet.at(0) < 'a' + breedte)
+           || !(zet.at(1) > '0' && zet.at(1) <= '0' + breedte )) {
+            cout << "Deze zet is niet geldig... om een zet te doen ty"
+                 << "p je de coordinaten in door middel van schaaknot"
+                 << "atie, i.e. [A1]." << endl;
+        }
+        else {
+            rijZet = zet.at(1) - '0';
+            if (zet.at(0) >= 'a' && zet[0] < 'a' + breedte) {
+                kolomZet = zet.at(0) - 'a';
+            }
+            else {
+                kolomZet = zet.at(0) - 'A';
+            }
+            if (spelerTracker) {
+                speler = 'Z';
+            }
+            else {
+                speler = 'W';
+            }
+            for (int i = 0; i < rijZet; i++) {
+                z = z->buren[2];
+            }
+            for (int j = 0; j < kolomZet; j++) {
+                z = z->buren[4];
+            }
+            z->kleur = speler;
+            spelerTracker = !spelerTracker;
         }
     }
 
@@ -149,5 +187,5 @@
             ycoord++;
             rij = rij->buren[4];
         }
-		//cout << wijzer << endl;
+        //cout << wijzer << endl;
     }
